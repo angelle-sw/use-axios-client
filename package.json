@@ -7,7 +7,7 @@
     "lint": "./node_modules/.bin/eslint src/**/*.js webpack.config.js",
     "prepare": "webpack --config webpack.config.js",
     "prettier": "./node_modules/.bin/prettier --write src/**/*.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -21,12 +21,17 @@
   "homepage": "https://github.com/angelle-sw/use-fetch-hooks#readme",
   "dependencies": {
     "axios": "^0.19.0",
-    "react": "^16.9.0"
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
+    "@testing-library/jest-dom": "^4.0.0",
+    "@testing-library/react": "^9.1.0",
+    "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.6",
     "eslint": "^6.1.0",
     "eslint-config-airbnb": "^18.0.0",
@@ -37,6 +42,7 @@
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.7.0",
     "husky": "^3.0.3",
+    "jest": "^24.8.0",
     "prettier": "^1.18.2",
     "webpack": "^4.39.1",
     "webpack-cli": "^3.3.6"

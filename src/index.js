@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { axios } from 'axios';
+import axios from 'axios';
 
 const useFetch = config => {
   const [data, setData] = useState(null);
@@ -19,7 +19,7 @@ const useFetch = config => {
         setLoading(false);
       }
     })();
-  }, [config]);
+  }, [config.url]);
 
   return { data, error, loading };
 };
