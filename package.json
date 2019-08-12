@@ -1,0 +1,19 @@
+{
+  "name": "use-fetch-hooks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angelle-sw/use-fetch-hooks.git"
+  },
+  "author": "JP Angelle, Zak Angelle",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/angelle-sw/use-fetch-hooks/issues"
+  },
+  "homepage": "https://github.com/angelle-sw/use-fetch-hooks#readme"
+}
