@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "./node_modules/.bin/eslint src/**/*.js webpack.config.js",
     "prepare": "webpack --config webpack.config.js",
-    "prettier": "./node_modules/.bin/prettier --write src/**/*.js",
+    "prettier": "./node_modules/.bin/prettier --write **/*.{js,jsx}",
     "test": "jest --watch"
   },
   "repository": {
@@ -43,17 +43,18 @@
     "husky": "^3.0.3",
     "jest": "^24.8.0",
     "prettier": "^1.18.2",
+    "pretty-quick": "^1.11.1",
     "react-test-renderer": "^16.9.0",
     "webpack": "^4.39.1",
     "webpack-cli": "^3.3.6"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run prettier"
-    }
-  },
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   }
 }

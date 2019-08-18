@@ -1,5 +1,5 @@
 import React from 'react';
-import { useFetch } from 'use-fetch-hooks';
+import { useFetch } from '../../../src';
 
 export default () => {
   const { data, loading, error } = useFetch('https://reqres.in/api/things/1');
@@ -14,7 +14,9 @@ export default () => {
 
       {data && (
         <div>
-          {data.data.name}: {data.data.color}
+          {data.data.name}
+          {': '}
+          {data.data.color}
         </div>
       )}
     </div>
