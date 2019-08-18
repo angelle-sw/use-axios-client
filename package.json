@@ -7,7 +7,7 @@
     "lint": "./node_modules/.bin/eslint src/**/*.js webpack.config.js",
     "prepare": "webpack --config webpack.config.js",
     "prettier": "./node_modules/.bin/prettier --write src/**/*.js",
-    "test": "jest"
+    "test": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,7 @@
     "@babel/preset-react": "^7.0.0",
     "@testing-library/jest-dom": "^4.0.0",
     "@testing-library/react": "^9.1.0",
+    "@testing-library/react-hooks": "^2.0.1",
     "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.6",
     "eslint": "^6.1.0",
@@ -44,6 +45,7 @@
     "husky": "^3.0.3",
     "jest": "^24.8.0",
     "prettier": "^1.18.2",
+    "react-test-renderer": "^16.9.0",
     "webpack": "^4.39.1",
     "webpack-cli": "^3.3.6"
   },

@@ -8,16 +8,14 @@ export default () => {
     <div style={{ marginBottom: 50 }}>
       <h2>useFetch</h2>
 
-      {loading && (
-        <div>Loading...</div>
-      )}
+      {loading && <div>Loading...</div>}
 
-      {error && (
-        <div>{error.message}</div>
-      )}
+      {error && <div>{error.message}</div>}
 
       {data && (
-        <div>{data.data.name}: {data.data.color}</div>
+        <div>
+          {data.data.name}: {data.data.color}
+        </div>
       )}
     </div>
   );

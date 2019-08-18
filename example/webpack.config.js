@@ -8,26 +8,26 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
-        }
+          loader: 'babel-loader',
+        },
       },
       {
         test: /\.html$/,
         use: {
-          loader: 'html-loader'
-        }
-      }
-    ]
+          loader: 'html-loader',
+        },
+      },
+    ],
   },
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
       'use-fetch-hooks': path.resolve(__dirname, '../src'),
-    }
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html'
-    })
-  ]
+      template: './src/index.html',
+    }),
+  ],
 };

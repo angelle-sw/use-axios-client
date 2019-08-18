@@ -1,30 +1,54 @@
-import React from 'react';
-import { cleanup, render, waitForElement } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+import { renderHook } from '@testing-library/react-hooks';
 import axios from 'axios';
-import Component from './Component';
+import { useFetch } from '.';
 
 jest.mock('axios');
 
-afterEach(cleanup);
+describe('useFetch hook', () => {
+  test('loading is truthy before fetch resolves/rejects', () => {
+    const { result } = renderHook(() =>
+      useFetch({
+        method: 'get',
+        url: '/test',
+      })
+    );
 
-describe('useFetch', () => {
-  test('component renders loading when fetching', () => {
-    const { getByText } = render(<Component />);
-    expect(getByText('Loading').toBeInTheDocument);
+    expect(result.current.data).toBeFalsy();
+    expect(result.current.error).toBeFalsy();
+    expect(result.current.loading).toBeTruthy();
   });
 
-  test('component renders error when fetch errors', async () => {
-    axios.mockResolvedValue();
-    const { getByText } = render(<Component />);
-    const element = await waitForElement(() => getByText('Error'));
-    expect(element.toBeInTheDocument);
-  });
-
-  test('component renders Hello World when fetch succeeds', async () => {
+  test('data is truthy when fetch resolves', async () => {
     axios.mockResolvedValue({ data: {} });
-    const { getByText } = render(<Component />);
-    const element = await waitForElement(() => getByText('Hello World'));
-    expect(element.toBeInTheDocument);
+
+    const { result, waitForNextUpdate } = renderHook(() =>
+      useFetch({
+        method: 'get',
+        url: '/test',
+      })
+    );
+
+    await waitForNextUpdate();
+
+    expect(result.current.loading).toBeFalsy();
+    expect(result.current.error).toBeFalsy();
+    expect(result.current.data).toBeTruthy();
+  });
+
+  test('error is truthy when fetch rejects', async () => {
+    axios.mockRejectedValue(new Error('Error'));
+
+    const { result, waitForNextUpdate } = renderHook(() =>
+      useFetch({
+        method: 'get',
+        url: '/test',
+      })
+    );
+
+    await waitForNextUpdate();
+
+    expect(result.current.loading).toBeFalsy();
+    expect(result.current.data).toBeFalsy();
+    expect(result.current.error).toBeTruthy();
   });
 });
