@@ -1,7 +1,7 @@
 {
   "name": "use-fetch-hooks",
   "version": "1.0.0",
-  "description": "custom fetch hooks",
+  "description": "Make HTTP requests in React using hooks.",
   "main": "index.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint src/**/*.js webpack.config.js",
