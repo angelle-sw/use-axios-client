@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLazyFetch } from 'use-fetch-hooks';
+import { useLazyFetch } from '../../../src';
 
 export default () => {
   const [getData, { data, loading, error }] = useLazyFetch(
@@ -16,11 +16,15 @@ export default () => {
 
       {data && (
         <div>
-          {data.data.name}: {data.data.color}
+          {data.data.name}
+          {': '}
+          {data.data.color}
         </div>
       )}
 
-      <button onClick={getData}>get data</button>
+      <button type="button" onClick={getData}>
+        get data
+      </button>
     </div>
   );
 };
