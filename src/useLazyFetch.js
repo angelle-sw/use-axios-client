@@ -1,23 +1,7 @@
-import { useState } from 'react';
-import axios from 'axios';
+import useBaseFetch from './useBaseFetch';
 
 export default config => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-
-  const getData = async () => {
-    try {
-      setLoading(true);
-      const res = await axios(config);
-      setData(res.data);
-      setLoading(false);
-      setError('');
-    } catch (e) {
-      setError(e);
-      setLoading(false);
-    }
-  };
+  const [getData, { data, error, loading }] = useBaseFetch(config);
 
   return [getData, { data, error, loading }];
 };
