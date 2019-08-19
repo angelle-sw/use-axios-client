@@ -1,5 +1,7 @@
 import React from 'react';
+import Container from './Container';
 import UseFetchBasic from './useFetch/Basic';
+import UseFetchSuspense from './useFetch/Suspense';
 import UseLazyFetchBasic from './useLazyFetch/Basic';
 
 export default () => (
@@ -10,7 +12,18 @@ export default () => (
       </a>
     </h1>
 
-    <UseFetchBasic />
-    <UseLazyFetchBasic />
+    <Container title="useFetch (Basic)">
+      <UseFetchBasic />
+    </Container>
+
+    <Container title="useFetch (Suspense)">
+      <React.Suspense fallback="Loading...">
+        <UseFetchSuspense />
+      </React.Suspense>
+    </Container>
+
+    <Container title="useLazyFetch (Basic)">
+      <UseLazyFetchBasic />
+    </Container>
   </>
 );

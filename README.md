@@ -28,6 +28,24 @@ export default () => {
 };
 ```
 
+### `useFetch` (with Suspense)
+
+```js
+import { useFetch } from 'use-fetch-hooks';
+
+const Child = () => {
+  const { data } = useFetch('https://example/api', { suspense: true });
+
+  return <div>{data}</div>;
+};
+
+const Parent = () => (
+  <React.Suspense fallback="Loading...">
+    <Child />
+  </React.Suspense>
+);
+```
+
 ### `useLazyFetch`
 
 ```js

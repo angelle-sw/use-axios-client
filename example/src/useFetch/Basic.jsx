@@ -5,9 +5,7 @@ export default () => {
   const { data, loading, error } = useFetch('https://reqres.in/api/things/1');
 
   return (
-    <div style={{ marginBottom: 50 }}>
-      <h2>useFetch</h2>
-
+    <>
       {loading && <div>Loading...</div>}
 
       {error && <div>{error.message}</div>}
@@ -19,6 +17,6 @@ export default () => {
           {data.data.color}
         </div>
       )}
-    </div>
+    </>
   );
 };

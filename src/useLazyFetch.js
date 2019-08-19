@@ -1,7 +1,7 @@
 import useBaseFetch from './useBaseFetch';
 
-export default config => {
-  const [getData, { data, error, loading }] = useBaseFetch(config);
+export default (url, options = {}) => {
+  const [getData, { data, error, loading }] = useBaseFetch(url, options);
 
   return [getData, { data, error, loading }];
 };

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-export default config => {
+export default url => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -9,7 +9,7 @@ export default config => {
   const getData = async () => {
     try {
       setLoading(true);
-      const res = await axios(config);
+      const res = await axios(url);
       setData(res.data);
       setLoading(false);
       setError('');

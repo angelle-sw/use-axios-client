@@ -1,12 +1,17 @@
 import { useEffect } from 'react';
 import useBaseFetch from './useBaseFetch';
+import useBaseSuspenseFetch from './useBaseSuspenseFetch';
 
-export default config => {
-  const [getData, { data, error, loading }] = useBaseFetch(config);
+export default (url, options = {}) => {
+  if (options.suspense) {
+    return useBaseSuspenseFetch(url);
+  }
+
+  const [getData, { data, error, loading }] = useBaseFetch(url, options);
 
   useEffect(() => {
     getData();
-  }, [config.url]);
+  }, [url]);
 
   return { data, error, loading };
 };

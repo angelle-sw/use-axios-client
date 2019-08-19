@@ -7,9 +7,7 @@ export default () => {
   );
 
   return (
-    <div style={{ marginBottom: 50 }}>
-      <h2>useLazyFetch</h2>
-
+    <>
       {loading && <div>Loading...</div>}
 
       {error && <div>{error.message}</div>}
@@ -25,6 +23,6 @@ export default () => {
       <button type="button" onClick={getData}>
         get data
       </button>
-    </div>
+    </>
   );
 };
