@@ -9,9 +9,9 @@ interface Data {
 }
 
 export default () => {
-  const { data, error, loading } = useFetch<Data>({
-    url: 'https://reqres.in/api/things/1',
-  });
+  const { data, error, loading } = useFetch<Data>(
+    'https://reqres.in/api/things/1'
+  );
 
   if (loading) {
     return <div>Loading...</div>;
