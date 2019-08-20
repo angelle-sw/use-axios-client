@@ -4,7 +4,8 @@
     "es6": true,
     "jest": true
   },
-  "extends": ["airbnb", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "extends": ["airbnb", "prettier", "plugin:@typescript-eslint/recommended"],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -18,7 +19,20 @@
   },
   "plugins": ["react", "prettier"],
   "rules": {
+    "import/no-extraneous-dependencies": [
+      "error",
+      { "devDependencies": ["**/*.test.ts"] }
+    ],
     "prettier/prettier": "error",
-    "react/jsx-filename-extension": "off"
+    "react/jsx-filename-extension": "off",
+    "react/prop-types": "off",
+    "@typescript-eslint/explicit-function-return-type": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
   }
 }

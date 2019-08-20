@@ -16,7 +16,9 @@ $ npm install use-fetch-hooks
 import { useFetch } from 'use-fetch-hooks';
 
 export default () => {
-  const { data, error, loading } = useFetch('https://example/api');
+  const { data, error, loading } = useFetch({
+    url: 'https://example/api'
+  });
 
   if (loading) {
     return <div>Loading...</div>;
@@ -40,9 +42,9 @@ export default () => {
 import { useLazyFetch } from 'use-fetch-hooks';
 
 export default () => {
-  const [getData, { data, error, loading }] = useLazyFetch(
-    'https://example/api'
-  );
+  const [getData, { data, error, loading }] = useLazyFetch({
+    url: 'https://example/api'
+  });
 
   if (loading) {
     return <div>Loading...</div>;
@@ -58,6 +60,45 @@ export default () => {
       <button onClick={getData}>get data</button>
     </>
   }
+};
+```
+
+### with TypeScript
+
+```ts
+import { useFetch } from 'use-fetch-hooks';
+
+interface Data {
+  data: {
+    name: string;
+    color: string;
+  };
+}
+
+export default () => {
+  const { data, error, loading } = useFetch<Data>({
+    url: 'https://example/api',
+  });
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error.message}</div>;
+  }
+
+  return (
+    <>
+      {data && (
+        <div>
+          {data.data.name}
+          {': '}
+          {data.data.color}
+        </div>
+      )}
+    </>
+  );
 };
 ```
 

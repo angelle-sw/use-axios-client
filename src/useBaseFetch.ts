@@ -1,21 +1,29 @@
 import { useEffect, useRef, useState } from 'react';
-import axios from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
-export default config => {
-  const [data, setData] = useState(null);
+export interface RequestState<Data> {
+  data: Data | null;
+  loading: boolean;
+  error: Error | null;
+}
+
+export type BaseFetch<Data> = [() => Promise<void>, RequestState<Data>];
+
+export default <Data>(config: AxiosRequestConfig): BaseFetch<Data> => {
+  const [data, setData] = useState<Data | null>(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState<Error | null>(null);
   const isMounted = useRef(true);
   const { current } = isMounted;
 
   const getData = async () => {
     try {
       setLoading(true);
-      const res = await axios(config);
+      const res = (await axios(config)) as AxiosResponse<Data>;
       if (current) {
         setData(res.data);
         setLoading(false);
-        setError('');
+        setError(null);
       }
     } catch (e) {
       if (current) {

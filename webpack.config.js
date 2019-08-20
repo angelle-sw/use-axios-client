@@ -8,13 +8,10 @@ const config = {
   module: {
     rules: [
       {
-        test: /(\.jsx|\.js)$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-          },
         },
       },
     ],
@@ -28,7 +25,7 @@ const config = {
     globalObject: "typeof self !== 'undefined' ? self : this",
   },
   resolve: {
-    extensions: ['.json', '.js'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     modules: ['node_modules'],
   },
   target: 'node',

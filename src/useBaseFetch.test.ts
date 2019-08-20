@@ -1,8 +1,14 @@
 import { act, renderHook } from '@testing-library/react-hooks';
-import axios from 'axios';
+import axios, { AxiosStatic } from 'axios';
 import useBaseFetch from './useBaseFetch';
 
+interface AxiosMock extends AxiosStatic {
+  mockResolvedValue: Function;
+  mockRejectedValue: Function;
+}
+
 jest.mock('axios');
+const mockedAxios = axios as AxiosMock;
 
 test('loading is true before fetch resolves/rejects', () => {
   const { result } = renderHook(() =>
@@ -26,7 +32,7 @@ test('loading is true before fetch resolves/rejects', () => {
 });
 
 test('data is truthy when fetch resolves', async () => {
-  axios.mockResolvedValue({ data: {} });
+  mockedAxios.mockResolvedValue({ data: {} });
 
   const { result, waitForNextUpdate } = renderHook(() =>
     useBaseFetch({
@@ -51,7 +57,7 @@ test('data is truthy when fetch resolves', async () => {
 });
 
 test('error is truthy when fetch rejects', async () => {
-  axios.mockRejectedValue(new Error('Error'));
+  mockedAxios.mockRejectedValue(new Error('Error'));
 
   const { result, waitForNextUpdate } = renderHook(() =>
     useBaseFetch({
