@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "jsx": "react",
+    "strict": true,
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "declaration": true,
+    "baseUrl": "src",
+    "typeRoots": ["src/@types", "node_modules/@types"]
+  },
+  "include": ["src", "example"],
+  "exclude": ["node_modules"]
+}

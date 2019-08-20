@@ -1,10 +1,17 @@
 import React from 'react';
-import { useLazyFetch } from '../../../src';
+import { useFetch } from '../../../src';
+
+interface Data {
+  data: {
+    name: string;
+    color: string;
+  };
+}
 
 export default () => {
-  const [getData, { data, error, loading }] = useLazyFetch(
-    'https://reqres.in/api/things/1'
-  );
+  const { data, error, loading } = useFetch<Data>({
+    url: 'https://reqres.in/api/things/1',
+  });
 
   if (loading) {
     return <div>Loading...</div>;
@@ -23,9 +30,6 @@ export default () => {
           {data.data.color}
         </div>
       )}
-      <button type="button" onClick={getData}>
-        get data
-      </button>
     </>
   );
 };
