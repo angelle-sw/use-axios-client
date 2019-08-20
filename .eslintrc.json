@@ -21,7 +21,9 @@
   "rules": {
     "import/no-extraneous-dependencies": [
       "error",
-      { "devDependencies": ["**/*.test.ts"] }
+      {
+        "devDependencies": ["**/webpack.config.js", "**/*.test.ts"]
+      }
     ],
     "prettier/prettier": "error",
     "react/jsx-filename-extension": "off",
