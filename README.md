@@ -16,15 +16,21 @@ $ npm install use-fetch-hooks
 import { useFetch } from 'use-fetch-hooks';
 
 export default () => {
-  const { data, loading, error } = useFetch('https://example/api');
+  const { data, error, loading } = useFetch('https://example/api');
 
-  return (
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error.message}</div>;
+  }
+
+  return {
     <>
-      {loading && <div>Loading...</div>}
-      {error && <div>{error.message}</div>}
-      {data && <div>{data}</div>}
+      {data && <div>{data}</div>
     </>
-  );
+  }
 };
 ```
 
@@ -34,19 +40,24 @@ export default () => {
 import { useLazyFetch } from 'use-fetch-hooks';
 
 export default () => {
-  const [getData, { data, loading, error }] = useLazyFetch(
+  const [getData, { data, error, loading }] = useLazyFetch(
     'https://example/api'
   );
 
-  return (
-    <>
-      {loading && <div>Loading...</div>}
-      {error && <div>{error.message}</div>}
-      {data && <div>{data}</div>}
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
+  if (error) {
+    return <div>{error.message}</div>;
+  }
+
+  return {
+    <>
+      {data && <div>{data}</div>}
       <button onClick={getData}>get data</button>
     </>
-  );
+  }
 };
 ```
 

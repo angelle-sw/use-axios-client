@@ -2,16 +2,18 @@ import React from 'react';
 import { useFetch } from '../../../src';
 
 export default () => {
-  const { data, loading, error } = useFetch('https://reqres.in/api/things/1');
+  const { data, error, loading } = useFetch('https://reqres.in/api/things/1');
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error.message}</div>;
+  }
 
   return (
-    <div style={{ marginBottom: 50 }}>
-      <h2>useFetch</h2>
-
-      {loading && <div>Loading...</div>}
-
-      {error && <div>{error.message}</div>}
-
+    <>
       {data && (
         <div>
           {data.data.name}
@@ -19,6 +21,6 @@ export default () => {
           {data.data.color}
         </div>
       )}
-    </div>
+    </>
   );
 };
