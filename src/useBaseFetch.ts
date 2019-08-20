@@ -18,7 +18,7 @@ export default <Data>(config: AxiosRequestConfig): BaseFetch<Data> => {
   const { CancelToken } = axios;
   const source = CancelToken.source();
 
-  const configWithCancelToken = rawConfig => {
+  const getConfig = rawConfig => {
     if (typeof rawConfig === 'string') {
       return {
         url: rawConfig,
@@ -34,9 +34,7 @@ export default <Data>(config: AxiosRequestConfig): BaseFetch<Data> => {
   const getData = async () => {
     try {
       setLoading(true);
-      const res = (await axios(configWithCancelToken(config))) as AxiosResponse<
-        Data
-      >;
+      const res = (await axios(getConfig(config))) as AxiosResponse<Data>;
       if (isMounted.current) {
         setData(res.data);
         setLoading(false);
