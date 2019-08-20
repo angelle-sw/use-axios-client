@@ -9,10 +9,19 @@ interface AxiosMock extends AxiosStatic {
 
 jest.mock('axios');
 const mockedAxios = axios as AxiosMock;
+const { CancelToken } = axios;
+
+beforeEach(() => {
+  CancelToken.source = jest.fn().mockImplementation(() => ({
+    token: 'abc',
+  }));
+});
 
 test('loading is true before fetch resolves/rejects', () => {
+  const source = CancelToken.source();
   const { result } = renderHook(() =>
     useBaseFetch({
+      cancelToken: source.token,
       method: 'get',
       url: '/test',
     })
@@ -33,9 +42,11 @@ test('loading is true before fetch resolves/rejects', () => {
 
 test('data is truthy when fetch resolves', async () => {
   mockedAxios.mockResolvedValue({ data: {} });
+  const source = CancelToken.source();
 
   const { result, waitForNextUpdate } = renderHook(() =>
     useBaseFetch({
+      cancelToken: source.token,
       method: 'get',
       url: '/test',
     })
@@ -58,9 +69,11 @@ test('data is truthy when fetch resolves', async () => {
 
 test('error is truthy when fetch rejects', async () => {
   mockedAxios.mockRejectedValue(new Error('Error'));
+  const source = CancelToken.source();
 
   const { result, waitForNextUpdate } = renderHook(() =>
     useBaseFetch({
+      cancelToken: source.token,
       method: 'get',
       url: '/test',
     })
