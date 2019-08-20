@@ -10,7 +10,14 @@ export default () => (
       </a>
     </h1>
 
-    <UseFetchBasic />
-    <UseLazyFetchBasic />
+    <div style={{ marginBottom: 50 }}>
+      <h2>useFetch</h2>
+      <UseFetchBasic />
+    </div>
+
+    <div style={{ marginBottom: 50 }}>
+      <h2>useLazyFetch</h2>
+      <UseLazyFetchBasic />
+    </div>
   </>
 );

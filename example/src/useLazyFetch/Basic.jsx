@@ -2,18 +2,20 @@ import React from 'react';
 import { useLazyFetch } from '../../../src';
 
 export default () => {
-  const [getData, { data, loading, error }] = useLazyFetch(
+  const [getData, { data, error, loading }] = useLazyFetch(
     'https://reqres.in/api/things/1'
   );
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error.message}</div>;
+  }
+
   return (
-    <div style={{ marginBottom: 50 }}>
-      <h2>useLazyFetch</h2>
-
-      {loading && <div>Loading...</div>}
-
-      {error && <div>{error.message}</div>}
-
+    <>
       {data && (
         <div>
           {data.data.name}
@@ -21,10 +23,9 @@ export default () => {
           {data.data.color}
         </div>
       )}
-
       <button type="button" onClick={getData}>
         get data
       </button>
-    </div>
+    </>
   );
 };
