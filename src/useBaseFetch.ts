@@ -9,7 +9,16 @@ export interface RequestState<Data> {
 
 export type BaseFetch<Data> = [() => Promise<void>, RequestState<Data>];
 
-export default <Data>(config: AxiosRequestConfig): BaseFetch<Data> => {
+function useBaseFetch<Data>(url: string): BaseFetch<Data>;
+function useBaseFetch<Data>(config: AxiosRequestConfig): BaseFetch<Data>;
+function useBaseFetch<Data>(
+  url: string,
+  config: AxiosRequestConfig
+): BaseFetch<Data>;
+function useBaseFetch<Data>(
+  param1: string | AxiosRequestConfig,
+  param2?: AxiosRequestConfig
+): BaseFetch<Data> {
   const [data, setData] = useState<Data | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
@@ -18,23 +27,25 @@ export default <Data>(config: AxiosRequestConfig): BaseFetch<Data> => {
   const { CancelToken } = axios;
   const source = CancelToken.source();
 
-  const getConfig = rawConfig => {
-    if (typeof rawConfig === 'string') {
-      return {
-        url: rawConfig,
-        cancelToken: source.token,
-      };
-    }
-    return {
-      ...rawConfig,
-      cancelToken: source.token,
-    };
-  };
+  const axiosCall =
+    typeof param1 === 'string'
+      ? () =>
+          axios(param1, {
+            ...param2,
+            cancelToken: source.token,
+          })
+      : () =>
+          axios({
+            ...param1,
+            cancelToken: source.token,
+          });
 
   const getData = async () => {
     try {
       setLoading(true);
-      const res = (await axios(getConfig(config))) as AxiosResponse<Data>;
+
+      const res = (await axiosCall()) as AxiosResponse<Data>;
+
       if (isMounted.current) {
         setData(res.data);
         setLoading(false);
@@ -56,4 +67,6 @@ export default <Data>(config: AxiosRequestConfig): BaseFetch<Data> => {
   }, []);
 
   return [getData, { data, error, loading }];
-};
+}
+
+export default useBaseFetch;
