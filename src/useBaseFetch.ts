@@ -14,19 +14,34 @@ export default <Data>(config: AxiosRequestConfig): BaseFetch<Data> => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
   const isMounted = useRef(true);
-  const { current } = isMounted;
+
+  const { CancelToken } = axios;
+  const source = CancelToken.source();
+
+  const getConfig = rawConfig => {
+    if (typeof rawConfig === 'string') {
+      return {
+        url: rawConfig,
+        cancelToken: source.token,
+      };
+    }
+    return {
+      ...rawConfig,
+      cancelToken: source.token,
+    };
+  };
 
   const getData = async () => {
     try {
       setLoading(true);
-      const res = (await axios(config)) as AxiosResponse<Data>;
-      if (current) {
+      const res = (await axios(getConfig(config))) as AxiosResponse<Data>;
+      if (isMounted.current) {
         setData(res.data);
         setLoading(false);
         setError(null);
       }
     } catch (e) {
-      if (current) {
+      if (isMounted.current) {
         setError(e);
         setLoading(false);
       }
@@ -35,6 +50,7 @@ export default <Data>(config: AxiosRequestConfig): BaseFetch<Data> => {
 
   useEffect(() => {
     return () => {
+      source.cancel('Operation canceled by the user.');
       isMounted.current = false;
     };
   }, []);
