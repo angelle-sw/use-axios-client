@@ -1,6 +1,6 @@
 const config = {
   devtool: 'inline-source-map',
-  entry: `${__dirname}/src/index.js`,
+  entry: `${__dirname}/src/index.ts`,
   externals: {
     react: 'react',
   },
