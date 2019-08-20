@@ -15,7 +15,6 @@ export default <Data>(config: AxiosRequestConfig): BaseFetch<Data> => {
   const [error, setError] = useState<Error | null>(null);
   const isMounted = useRef(true);
 
-  const { current } = isMounted;
   const { CancelToken } = axios;
   const source = CancelToken.source();
 
@@ -38,13 +37,13 @@ export default <Data>(config: AxiosRequestConfig): BaseFetch<Data> => {
       const res = (await axios(configWithCancelToken(config))) as AxiosResponse<
         Data
       >;
-      if (current) {
+      if (isMounted.current) {
         setData(res.data);
         setLoading(false);
         setError(null);
       }
     } catch (e) {
-      if (current) {
+      if (isMounted.current) {
         setError(e);
         setLoading(false);
       }
