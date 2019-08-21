@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
+const source = axios.CancelToken.source();
+
 export interface RequestState<Data> {
   data: Data | null;
   loading: boolean;
@@ -23,9 +25,6 @@ function useBaseFetch<Data>(
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
   const isMounted = useRef(true);
-
-  const { CancelToken } = axios;
-  const source = CancelToken.source();
 
   const invokeAxios =
     typeof param1 === 'string'
