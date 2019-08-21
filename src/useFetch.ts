@@ -12,14 +12,14 @@ function useFetch<Data>(
   param1: string | AxiosRequestConfig,
   param2: AxiosRequestConfig = {}
 ) {
-  const useBaseFetchWithProperSignature =
+  const invokeUseBaseFetch =
     typeof param1 === 'string'
       ? () => useBaseFetch<Data>(param1, param2)
       : () => useBaseFetch<Data>(param1);
 
   const url = typeof param1 === 'string' ? param1 : param1.url;
 
-  const [getData, dataStates] = useBaseFetchWithProperSignature();
+  const [getData, dataStates] = invokeUseBaseFetch();
 
   useEffect(() => {
     getData();
