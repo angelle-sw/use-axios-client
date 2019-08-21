@@ -1,7 +1,7 @@
 {
-  "name": "use-fetch-hooks-example",
+  "name": "use-axios-client-example",
   "version": "1.0.0",
-  "description": "Example app for use-fetch-hooks",
+  "description": "Example app for use-axios-client",
   "main": "src/index.js",
   "scripts": {
     "start": "webpack-dev-server --open --mode development",

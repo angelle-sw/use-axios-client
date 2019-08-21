@@ -9,15 +9,15 @@ export interface RequestState<Data> {
   error: Error | null;
 }
 
-export type BaseFetch<Data> = [() => Promise<void>, RequestState<Data>];
+export type BaseAxios<Data> = [() => Promise<void>, RequestState<Data>];
 
-function useBaseFetch<Data>(url: string): BaseFetch<Data>;
-function useBaseFetch<Data>(config: AxiosRequestConfig): BaseFetch<Data>;
-function useBaseFetch<Data>(
+function useBaseAxios<Data>(url: string): BaseAxios<Data>;
+function useBaseAxios<Data>(config: AxiosRequestConfig): BaseAxios<Data>;
+function useBaseAxios<Data>(
   url: string,
   config: AxiosRequestConfig
-): BaseFetch<Data>;
-function useBaseFetch<Data>(
+): BaseAxios<Data>;
+function useBaseAxios<Data>(
   param1: string | AxiosRequestConfig,
   param2: AxiosRequestConfig = {}
 ) {
@@ -68,4 +68,4 @@ function useBaseFetch<Data>(
   return [getData, { data, error, loading }];
 }
 
-export default useBaseFetch;
+export default useBaseAxios;

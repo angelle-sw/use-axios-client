@@ -19,7 +19,7 @@ const config = {
   output: {
     path: `${__dirname}/bin`,
     filename: 'index.min.js',
-    library: 'use-fetch-hooks',
+    library: 'use-axios-client',
     libraryTarget: 'umd',
     umdNamedDefine: true,
     globalObject: "typeof self !== 'undefined' ? self : this",

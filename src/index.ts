@@ -1,2 +1,2 @@
-export { default as useFetch } from './useFetch';
-export { default as useLazyFetch } from './useLazyFetch';
+export { default as useAxios } from './useAxios';
+export { default as useLazyAxios } from './useLazyAxios';

@@ -1,23 +1,23 @@
 import React from 'react';
-import UseFetchBasic from './useFetch/Basic';
-import UseLazyFetchBasic from './useLazyFetch/Basic';
+import UseAxiosBasic from './useAxios/Basic';
+import UseLazyAxiosBasic from './useLazyAxios/Basic';
 
 export default () => (
   <>
     <h1>
-      <a href="https://github.com/angelle-sw/use-fetch-hooks">
-        use-fetch-hooks
+      <a href="https://github.com/angelle-sw/use-axios-client">
+        use-axios-client
       </a>
     </h1>
 
     <div style={{ marginBottom: 50 }}>
-      <h2>useFetch</h2>
-      <UseFetchBasic />
+      <h2>useAxios</h2>
+      <UseAxiosBasic />
     </div>
 
     <div style={{ marginBottom: 50 }}>
-      <h2>useLazyFetch</h2>
-      <UseLazyFetchBasic />
+      <h2>useLazyAxios</h2>
+      <UseLazyAxiosBasic />
     </div>
   </>
 );

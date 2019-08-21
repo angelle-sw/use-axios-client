@@ -1,22 +1,22 @@
-# use-fetch-hooks
+# use-axios-client
 
 Make HTTP requests in React using hooks.
 
 ## Installation
 
 ```sh
-$ npm install use-fetch-hooks
+$ npm install use-axios-client
 ```
 
 ## Usage
 
-### `useFetch`
+### `useAxios`
 
 ```js
-import { useFetch } from 'use-fetch-hooks';
+import { useAxios } from 'use-axios-client';
 
 export default () => {
-  const { data, error, loading } = useFetch({
+  const { data, error, loading } = useAxios({
     url: 'https://example/api'
   });
 
@@ -36,13 +36,13 @@ export default () => {
 };
 ```
 
-### `useLazyFetch`
+### `useLazyAxios`
 
 ```js
-import { useLazyFetch } from 'use-fetch-hooks';
+import { useLazyAxios } from 'use-axios-client';
 
 export default () => {
-  const [getData, { data, error, loading }] = useLazyFetch({
+  const [getData, { data, error, loading }] = useLazyAxios({
     url: 'https://example/api'
   });
 
@@ -66,7 +66,7 @@ export default () => {
 ### with TypeScript
 
 ```ts
-import { useFetch } from 'use-fetch-hooks';
+import { useAxios } from 'use-axios-client';
 
 interface Data {
   data: {
@@ -76,7 +76,7 @@ interface Data {
 }
 
 export default () => {
-  const { data, error, loading } = useFetch<Data>({
+  const { data, error, loading } = useAxios<Data>({
     url: 'https://example/api',
   });
 

@@ -1,5 +1,5 @@
 {
-  "name": "use-fetch-hooks",
+  "name": "use-axios-client",
   "version": "1.0.1",
   "description": "Make HTTP requests in React using hooks.",
   "main": "bin/index.min.js",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/angelle-sw/use-fetch-hooks.git"
+    "url": "git+https://github.com/angelle-sw/use-axios-client.git"
   },
   "author": "JP Angelle, Zak Angelle",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/angelle-sw/use-fetch-hooks/issues"
+    "url": "https://github.com/angelle-sw/use-axios-client/issues"
   },
-  "homepage": "https://github.com/angelle-sw/use-fetch-hooks#readme",
+  "homepage": "https://github.com/angelle-sw/use-axios-client#readme",
   "dependencies": {
     "axios": "^0.19.0"
   },

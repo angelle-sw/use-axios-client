@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react-hooks';
 import axios, { AxiosStatic } from 'axios';
-import useBaseFetch from './useBaseFetch';
+import useBaseAxios from './useBaseAxios';
 
 interface AxiosMock extends AxiosStatic {
   mockResolvedValue: Function;
@@ -17,10 +17,10 @@ beforeEach(() => {
   }));
 });
 
-test('loading is true before fetch resolves/rejects', () => {
+test('loading is true before axios request resolves/rejects', () => {
   const source = CancelToken.source();
   const { result } = renderHook(() =>
-    useBaseFetch({
+    useBaseAxios({
       cancelToken: source.token,
       method: 'get',
       url: '/test',
@@ -40,12 +40,12 @@ test('loading is true before fetch resolves/rejects', () => {
   expect(loading).toBe(true);
 });
 
-test('data is truthy when fetch resolves', async () => {
+test('data is truthy when axios request resolves', async () => {
   mockedAxios.mockResolvedValue({ data: {} });
   const source = CancelToken.source();
 
   const { result, waitForNextUpdate } = renderHook(() =>
-    useBaseFetch({
+    useBaseAxios({
       cancelToken: source.token,
       method: 'get',
       url: '/test',
@@ -67,12 +67,12 @@ test('data is truthy when fetch resolves', async () => {
   expect(loading).toBe(false);
 });
 
-test('error is truthy when fetch rejects', async () => {
+test('error is truthy when axios request rejects', async () => {
   mockedAxios.mockRejectedValue(new Error('Error'));
   const source = CancelToken.source();
 
   const { result, waitForNextUpdate } = renderHook(() =>
-    useBaseFetch({
+    useBaseAxios({
       cancelToken: source.token,
       method: 'get',
       url: '/test',

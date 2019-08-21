@@ -1,5 +1,5 @@
 import React from 'react';
-import { useFetch } from '../../../src';
+import { useLazyAxios } from '../../../src';
 
 interface Data {
   data: {
@@ -9,9 +9,9 @@ interface Data {
 }
 
 export default () => {
-  const { data, error, loading } = useFetch<Data>(
-    'https://reqres.in/api/things/1'
-  );
+  const [getData, { data, error, loading }] = useLazyAxios<Data>({
+    url: 'https://reqres.in/api/things/1',
+  });
 
   if (loading) {
     return <div>Loading...</div>;
@@ -30,6 +30,9 @@ export default () => {
           {data.data.color}
         </div>
       )}
+      <button type="button" onClick={getData}>
+        get data
+      </button>
     </>
   );
 };
