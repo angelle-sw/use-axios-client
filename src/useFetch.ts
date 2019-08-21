@@ -10,11 +10,11 @@ function useFetch<Data>(
 ): RequestState<Data>;
 function useFetch<Data>(
   param1: string | AxiosRequestConfig,
-  param2?: AxiosRequestConfig
+  param2: AxiosRequestConfig = {}
 ): RequestState<Data> {
   const [getData, { data, error, loading }] =
     typeof param1 === 'string'
-      ? useBaseFetch<Data>(param1, param2 || {})
+      ? useBaseFetch<Data>(param1, param2)
       : useBaseFetch<Data>(param1);
 
   const url = typeof param1 === 'string' ? param1 : param1.url;

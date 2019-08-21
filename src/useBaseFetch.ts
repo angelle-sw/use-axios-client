@@ -17,7 +17,7 @@ function useBaseFetch<Data>(
 ): BaseFetch<Data>;
 function useBaseFetch<Data>(
   param1: string | AxiosRequestConfig,
-  param2?: AxiosRequestConfig
+  param2: AxiosRequestConfig = {}
 ): BaseFetch<Data> {
   const [data, setData] = useState<Data | null>(null);
   const [loading, setLoading] = useState(false);

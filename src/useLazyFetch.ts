@@ -9,11 +9,11 @@ function useLazyFetch<Data>(
 ): BaseFetch<Data>;
 function useLazyFetch<Data>(
   param1: string | AxiosRequestConfig,
-  param2?: AxiosRequestConfig
+  param2: AxiosRequestConfig = {}
 ): BaseFetch<Data> {
   const [getData, { data, error, loading }] =
     typeof param1 === 'string'
-      ? useBaseFetch<Data>(param1, param2 || {})
+      ? useBaseFetch<Data>(param1, param2)
       : useBaseFetch<Data>(param1);
 
   return [getData, { data, error, loading }];
