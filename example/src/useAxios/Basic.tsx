@@ -13,16 +13,10 @@ export default () => {
     'https://reqres.in/api/things/1'
   );
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>{error.message}</div>;
-  }
-
   return (
     <>
+      {loading && 'Loading...'}
+      {error && error}
       {data && (
         <div>
           {data.data.name}

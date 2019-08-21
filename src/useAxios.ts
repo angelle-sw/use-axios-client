@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { AxiosRequestConfig } from 'axios';
-import useBaseAxios, { RequestState } from './useBaseAxios';
+import useBaseAxios from './useBaseAxios';
+import { RequestState } from './reducer';
 
 function useAxios<Data>(url: string): RequestState<Data>;
 function useAxios<Data>(config: AxiosRequestConfig): RequestState<Data>;

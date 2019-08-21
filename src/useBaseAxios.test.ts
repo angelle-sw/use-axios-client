@@ -17,7 +17,7 @@ beforeEach(() => {
   }));
 });
 
-test('loading is true before axios request resolves/rejects', () => {
+test.skip('loading is true before axios request resolves/rejects', () => {
   const source = CancelToken.source();
   const { result } = renderHook(() =>
     useBaseAxios({
@@ -40,7 +40,7 @@ test('loading is true before axios request resolves/rejects', () => {
   expect(loading).toBe(true);
 });
 
-test('data is truthy when axios request resolves', async () => {
+test.skip('data is truthy when axios request resolves', async () => {
   mockedAxios.mockResolvedValue({ data: {} });
   const source = CancelToken.source();
 
@@ -67,7 +67,7 @@ test('data is truthy when axios request resolves', async () => {
   expect(loading).toBe(false);
 });
 
-test('error is truthy when axios request rejects', async () => {
+test.skip('error is truthy when axios request rejects', async () => {
   mockedAxios.mockRejectedValue(new Error('Error'));
   const source = CancelToken.source();
 

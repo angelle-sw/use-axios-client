@@ -1,20 +1,16 @@
 import { useEffect, useReducer, useRef } from 'react';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import createReducer, { initialState, RequestState } from './reducer';
 
-const source = axios.CancelToken.source();
+let source = axios.CancelToken.source();
 
-export interface RequestState<Data> {
-  data: Data | null;
-  loading: boolean;
-  error: Error | null;
+interface RequestFunctions {
+  cancel: () => void;
 }
 
-type Action<Data> =
-  | { type: 'REQUEST_INIT' }
-  | { type: 'REQUEST_SUCCESS'; payload: Data }
-  | { type: 'REQUEST_FAILED'; payload: Error };
+type Props<Data> = RequestState<Data> & RequestFunctions;
 
-export type BaseAxios<Data> = [() => Promise<void>, RequestState<Data>];
+export type BaseAxios<Data> = [() => Promise<void>, Props<Data>];
 
 function useBaseAxios<Data>(url: string): BaseAxios<Data>;
 function useBaseAxios<Data>(config: AxiosRequestConfig): BaseAxios<Data>;
@@ -27,39 +23,10 @@ function useBaseAxios<Data>(
   param1: string | AxiosRequestConfig,
   param2: AxiosRequestConfig = {}
 ) {
-  const reducer = (
-    state: RequestState<Data>,
-    action: Action<Data>
-  ): RequestState<Data> => {
-    switch (action.type) {
-      case 'REQUEST_INIT':
-        return {
-          ...state,
-          loading: true,
-        };
-      case 'REQUEST_SUCCESS':
-        return {
-          ...state,
-          data: action.payload,
-          error: null,
-          loading: false,
-        };
-      case 'REQUEST_FAILED':
-        return {
-          ...state,
-          error: action.payload,
-          loading: false,
-        };
-      default:
-        throw new Error('Unknown Error');
-    }
-  };
-
-  const [{ data, error, loading }, dispatch] = useReducer(reducer, {
-    data: null,
-    error: null,
-    loading: false,
-  });
+  const [{ data, error, loading }, dispatch] = useReducer(
+    createReducer<Data>(),
+    initialState
+  );
 
   const isMounted = useRef(true);
 
@@ -90,14 +57,19 @@ function useBaseAxios<Data>(
     }
   };
 
+  const cancel = () => {
+    source.cancel('Operation canceled by the user.');
+    source = axios.CancelToken.source();
+  };
+
   useEffect(() => {
     return () => {
-      source.cancel('Operation canceled by the user.');
+      cancel();
       isMounted.current = false;
     };
   }, []);
 
-  return [getData, { data, error, loading }];
+  return [getData, { cancel, data, error, loading }];
 }
 
 export default useBaseAxios;
