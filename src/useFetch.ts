@@ -11,19 +11,21 @@ function useFetch<Data>(
 function useFetch<Data>(
   param1: string | AxiosRequestConfig,
   param2: AxiosRequestConfig = {}
-): RequestState<Data> {
-  const [getData, { data, error, loading }] =
+) {
+  const useBaseFetchWithProperSignature =
     typeof param1 === 'string'
-      ? useBaseFetch<Data>(param1, param2)
-      : useBaseFetch<Data>(param1);
+      ? () => useBaseFetch<Data>(param1, param2)
+      : () => useBaseFetch<Data>(param1);
 
   const url = typeof param1 === 'string' ? param1 : param1.url;
+
+  const [getData, dataStates] = useBaseFetchWithProperSignature();
 
   useEffect(() => {
     getData();
   }, [url]);
 
-  return { data, error, loading };
+  return dataStates;
 }
 
 export default useFetch;

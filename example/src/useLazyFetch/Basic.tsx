@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLazyFetch } from 'use-fetch-hooks';
+import { useLazyFetch } from '../../../src';
 
 interface Data {
   data: {

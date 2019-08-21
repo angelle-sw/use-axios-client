@@ -18,7 +18,7 @@ function useBaseFetch<Data>(
 function useBaseFetch<Data>(
   param1: string | AxiosRequestConfig,
   param2: AxiosRequestConfig = {}
-): BaseFetch<Data> {
+) {
   const [data, setData] = useState<Data | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
@@ -27,7 +27,7 @@ function useBaseFetch<Data>(
   const { CancelToken } = axios;
   const source = CancelToken.source();
 
-  const axiosCall =
+  const invokeAxios =
     typeof param1 === 'string'
       ? () =>
           axios(param1, {
@@ -44,7 +44,7 @@ function useBaseFetch<Data>(
     try {
       setLoading(true);
 
-      const res = (await axiosCall()) as AxiosResponse<Data>;
+      const res = (await invokeAxios()) as AxiosResponse<Data>;
 
       if (isMounted.current) {
         setData(res.data);
