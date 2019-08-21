@@ -1,8 +1,8 @@
 {
   "name": "use-fetch-hooks",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Make HTTP requests in React using hooks.",
-  "main": "index.js",
+  "main": "bin/index.min.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint src/*.ts example/**/*.tsx webpack.config.js",
     "prepare": "webpack --config webpack.config.js",
