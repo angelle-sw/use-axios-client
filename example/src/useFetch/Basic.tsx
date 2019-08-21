@@ -1,5 +1,5 @@
 import React from 'react';
-import { useFetch } from '../../../src';
+import { useFetch } from 'use-fetch-hooks';
 
 interface Data {
   data: {

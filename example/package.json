@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react-dom": "^16.9.0",
+    "use-fetch-hooks": "^1.0.1"
   }
 }
