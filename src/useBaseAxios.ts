@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useReducer, useRef } from 'react';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 const source = axios.CancelToken.source();
@@ -9,6 +9,11 @@ export interface RequestState<Data> {
   error: Error | null;
 }
 
+type Action<Data> =
+  | { type: 'REQUEST_INIT' }
+  | { type: 'REQUEST_SUCCESS'; payload: Data }
+  | { type: 'REQUEST_FAILED'; payload: Error };
+
 export type BaseAxios<Data> = [() => Promise<void>, RequestState<Data>];
 
 function useBaseAxios<Data>(url: string): BaseAxios<Data>;
@@ -17,13 +22,45 @@ function useBaseAxios<Data>(
   url: string,
   config: AxiosRequestConfig
 ): BaseAxios<Data>;
+
 function useBaseAxios<Data>(
   param1: string | AxiosRequestConfig,
   param2: AxiosRequestConfig = {}
 ) {
-  const [data, setData] = useState<Data | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<Error | null>(null);
+  const reducer = (
+    state: RequestState<Data>,
+    action: Action<Data>
+  ): RequestState<Data> => {
+    switch (action.type) {
+      case 'REQUEST_INIT':
+        return {
+          ...state,
+          loading: true,
+        };
+      case 'REQUEST_SUCCESS':
+        return {
+          ...state,
+          data: action.payload,
+          error: null,
+          loading: false,
+        };
+      case 'REQUEST_FAILED':
+        return {
+          ...state,
+          error: action.payload,
+          loading: false,
+        };
+      default:
+        throw new Error('Unknown Error');
+    }
+  };
+
+  const [{ data, error, loading }, dispatch] = useReducer(reducer, {
+    data: null,
+    error: null,
+    loading: false,
+  });
+
   const isMounted = useRef(true);
 
   const invokeAxios =
@@ -40,20 +77,15 @@ function useBaseAxios<Data>(
           });
 
   const getData = async () => {
+    dispatch({ type: 'REQUEST_INIT' });
     try {
-      setLoading(true);
-
       const res = (await invokeAxios()) as AxiosResponse<Data>;
-
       if (isMounted.current) {
-        setData(res.data);
-        setLoading(false);
-        setError(null);
+        dispatch({ type: 'REQUEST_SUCCESS', payload: res.data });
       }
     } catch (e) {
       if (isMounted.current) {
-        setError(e);
-        setLoading(false);
+        dispatch({ type: 'REQUEST_FAILED', payload: e });
       }
     }
   };
