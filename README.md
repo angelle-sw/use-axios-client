@@ -1,6 +1,6 @@
 # use-axios-client
 
-Make HTTP requests in React using hooks.
+Make axios requests in React using hooks.
 
 ## Installation
 

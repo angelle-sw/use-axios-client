@@ -1,7 +1,7 @@
 {
   "name": "use-axios-client",
   "version": "1.0.1",
-  "description": "Make HTTP requests in React using hooks.",
+  "description": "Make axios requests in React using hooks.",
   "main": "bin/index.min.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint src/*.ts example/**/*.tsx webpack.config.js",
