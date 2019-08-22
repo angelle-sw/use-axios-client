@@ -23,7 +23,6 @@ export default <Data>() => (
     case 'REQUEST_INIT':
       return {
         ...state,
-        data: null,
         error: null,
         loading: true,
       };

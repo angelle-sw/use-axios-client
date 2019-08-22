@@ -17,7 +17,7 @@ export default () => {
     <>
       {loading && 'Loading...'}
       {error && error.message}
-      {data && (
+      {data && !loading && (
         <div>
           {data.data.name}
           {': '}

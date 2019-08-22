@@ -14,7 +14,7 @@ export default () => {
     <>
       {loading && 'Loading...'}
       {error && error.message}
-      {data && <div>{data.description}</div>}
+      {data && !loading && <div>{data.description}</div>}
       <button type="button" disabled={loading} onClick={getData}>
         get data
       </button>

@@ -22,9 +22,9 @@ export default () => {
 
   return {
     <>
-      {loading && <div>'Loading...'</div>}
-      {error && <div>error.message</div>}
-      {data && <div>data</div>}
+      {loading && <div>Loading...</div>}
+      {error && <div>{error.message}</div>}
+      {data && <div>{data}</div>}
     </>
   }
 };
@@ -42,8 +42,8 @@ export default () => {
 
   return {
     <>
-      {loading && <div>'Loading...'</div>}
-      {error && <div>error.message</div>}
+      {loading && <div>Loading...</div>}
+      {error && <div>{error.message}</div>}
       {data && <div>{data}</div>}
       <button onClick={getData}>get data</button>
     </>
@@ -70,8 +70,8 @@ export default () => {
 
   return (
     <>
-      {loading && <div>'Loading...'</div>}
-      {error && <div>error.message</div>}
+      {loading && <div>Loading...</div>}
+      {error && <div>{error.message}</div>}
       {data && (
         <div>
           {data.data.name}
