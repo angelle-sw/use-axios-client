@@ -1,6 +1,6 @@
-import { useEffect, useReducer, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import createReducer, { initialState, RequestState } from './reducer';
+import useAxiosReducer, { RequestState } from './useAxiosReducer';
 import useAxiosCancel from './useAxiosCancel';
 
 interface RequestFunctions {
@@ -16,7 +16,7 @@ function useBaseAxios<Data>(config: AxiosRequestConfig): BaseAxios<Data>;
 function useBaseAxios<Data>(url: string, config: AxiosRequestConfig): BaseAxios<Data>;
 function useBaseAxios<Data>(param1: string | AxiosRequestConfig, param2: AxiosRequestConfig = {}) {
   const isMounted = useRef(true);
-  const [{ data, error, loading }, dispatch] = useReducer(createReducer<Data>(), initialState);
+  const [{ data, error, loading }, dispatch] = useAxiosReducer<Data>();
   const { cancel, cancelToken } = useAxiosCancel();
 
   const invokeAxios =

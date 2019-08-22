@@ -1,3 +1,5 @@
+import { useReducer } from 'react';
+
 export interface RequestState<Data> {
   data: Data | null;
   loading: boolean;
@@ -15,7 +17,7 @@ export const initialState = {
   loading: false,
 };
 
-export default <Data>() => (
+const createReducer = <Data>() => (
   state: RequestState<Data>,
   action: Action<Data>
 ): RequestState<Data> => {
@@ -43,3 +45,5 @@ export default <Data>() => (
       throw new Error('Unknown Error');
   }
 };
+
+export default <Data>() => useReducer(createReducer<Data>(), initialState);
