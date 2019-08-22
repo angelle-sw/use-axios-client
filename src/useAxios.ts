@@ -1,14 +1,10 @@
 import { useEffect } from 'react';
 import { AxiosRequestConfig } from 'axios';
-import useBaseAxios from './useBaseAxios';
-import { RequestState } from './reducer';
+import useBaseAxios, { Props } from './useBaseAxios';
 
-function useAxios<Data>(url: string): RequestState<Data>;
-function useAxios<Data>(config: AxiosRequestConfig): RequestState<Data>;
-function useAxios<Data>(
-  url: string,
-  config: AxiosRequestConfig
-): RequestState<Data>;
+function useAxios<Data>(url: string): Props<Data>;
+function useAxios<Data>(config: AxiosRequestConfig): Props<Data>;
+function useAxios<Data>(url: string, config: AxiosRequestConfig): Props<Data>;
 function useAxios<Data>(
   param1: string | AxiosRequestConfig,
   param2: AxiosRequestConfig = {}

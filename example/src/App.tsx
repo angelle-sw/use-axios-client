@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import UseAxiosBasic from './useAxios/Basic';
-import UseLazyAxiosBasic from './useLazyAxios/Basic';
-import UseLazyAxiosCancel from './useLazyAxios/Cancel';
-import UseLazyAxiosUnmount from './useLazyAxios/Unmount';
+import { UseAxiosBasic, UseAxiosCancel, UseAxiosRetry } from './useAxios';
+import {
+  UseLazyAxiosBasic,
+  UseLazyAxiosCancel,
+  UseLazyAxiosRetry,
+  UseLazyAxiosUnmount,
+} from './useLazyAxios';
 
 export default () => {
   const [mount, setMount] = useState(true);
@@ -20,6 +23,16 @@ export default () => {
       </div>
 
       <div style={{ marginBottom: 50 }}>
+        <h2>useAxios with Cancel</h2>
+        <UseAxiosCancel />
+      </div>
+
+      <div style={{ marginBottom: 50 }}>
+        <h2>useAxios with Retry</h2>
+        <UseAxiosRetry />
+      </div>
+
+      <div style={{ marginBottom: 50 }}>
         <h2>useLazyAxios</h2>
         <UseLazyAxiosBasic />
       </div>
@@ -27,7 +40,7 @@ export default () => {
       <div style={{ marginBottom: 50 }}>
         {mount && (
           <>
-            <h2>useLazyAxios unmount</h2>
+            <h2>useLazyAxios Unmount</h2>
             <UseLazyAxiosUnmount />
           </>
         )}
@@ -39,6 +52,11 @@ export default () => {
       <div style={{ marginBottom: 50 }}>
         <h2>useLazyAxios with Cancel</h2>
         <UseLazyAxiosCancel />
+      </div>
+
+      <div style={{ marginBottom: 50 }}>
+        <h2>useLazyAxios with Retry</h2>
+        <UseLazyAxiosRetry />
       </div>
     </>
   );
