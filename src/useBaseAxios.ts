@@ -6,9 +6,10 @@ let source = axios.CancelToken.source();
 
 interface RequestFunctions {
   cancel: () => void;
+  refetch: () => Promise<void>;
 }
 
-type Props<Data> = RequestState<Data> & RequestFunctions;
+export type Props<Data> = RequestState<Data> & RequestFunctions;
 
 export type BaseAxios<Data> = [() => Promise<void>, Props<Data>];
 
@@ -69,7 +70,7 @@ function useBaseAxios<Data>(
     };
   }, []);
 
-  return [getData, { cancel, data, error, loading }];
+  return [getData, { cancel, data, error, loading, refetch: getData }];
 }
 
 export default useBaseAxios;
