@@ -1,8 +1,7 @@
 import { useEffect, useReducer, useRef } from 'react';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import createReducer, { initialState, RequestState } from './reducer';
-
-let source = axios.CancelToken.source();
+import useAxiosCancel from './useAxiosCancel';
 
 interface RequestFunctions {
   cancel: () => void;
@@ -30,18 +29,19 @@ function useBaseAxios<Data>(
   );
 
   const isMounted = useRef(true);
+  const { cancel, cancelToken } = useAxiosCancel();
 
   const invokeAxios =
     typeof param1 === 'string'
       ? () =>
           axios(param1, {
             ...param2,
-            cancelToken: source.token,
+            cancelToken,
           })
       : () =>
           axios({
             ...param1,
-            cancelToken: source.token,
+            cancelToken,
           });
 
   const getData = async () => {
@@ -56,11 +56,6 @@ function useBaseAxios<Data>(
         dispatch({ type: 'REQUEST_FAILED', payload: e });
       }
     }
-  };
-
-  const cancel = () => {
-    source.cancel('Operation canceled by the user.');
-    source = axios.CancelToken.source();
   };
 
   useEffect(() => {
