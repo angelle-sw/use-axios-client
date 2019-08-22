@@ -20,17 +20,11 @@ export default () => {
     url: 'https://example/api'
   });
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>{error.message}</div>;
-  }
-
   return {
     <>
-      {data && <div>{data}</div>
+      {loading && <div>Loading...</div>}
+      {error && <div>{error.message}</div>}
+      {data && <div>{data}</div>}
     </>
   }
 };
@@ -46,16 +40,10 @@ export default () => {
     url: 'https://example/api'
   });
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>{error.message}</div>;
-  }
-
   return {
     <>
+      {loading && <div>Loading...</div>}
+      {error && <div>{error.message}</div>}
       {data && <div>{data}</div>}
       <button onClick={getData}>get data</button>
     </>
@@ -80,16 +68,10 @@ export default () => {
     url: 'https://example/api',
   });
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>{error.message}</div>;
-  }
-
   return (
     <>
+      {loading && <div>Loading...</div>}
+      {error && <div>{error.message}</div>}
       {data && (
         <div>
           {data.data.name}
