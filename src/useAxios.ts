@@ -5,10 +5,7 @@ import useBaseAxios, { Props } from './useBaseAxios';
 function useAxios<Data>(url: string): Props<Data>;
 function useAxios<Data>(config: AxiosRequestConfig): Props<Data>;
 function useAxios<Data>(url: string, config: AxiosRequestConfig): Props<Data>;
-function useAxios<Data>(
-  param1: string | AxiosRequestConfig,
-  param2: AxiosRequestConfig = {}
-) {
+function useAxios<Data>(param1: string | AxiosRequestConfig, param2: AxiosRequestConfig = {}) {
   const invokeUseBaseAxios =
     typeof param1 === 'string'
       ? () => useBaseAxios<Data>(param1, param2)

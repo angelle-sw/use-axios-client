@@ -14,21 +14,10 @@ export type BaseAxios<Data> = [() => Promise<void>, Props<Data>];
 
 function useBaseAxios<Data>(url: string): BaseAxios<Data>;
 function useBaseAxios<Data>(config: AxiosRequestConfig): BaseAxios<Data>;
-function useBaseAxios<Data>(
-  url: string,
-  config: AxiosRequestConfig
-): BaseAxios<Data>;
-
-function useBaseAxios<Data>(
-  param1: string | AxiosRequestConfig,
-  param2: AxiosRequestConfig = {}
-) {
-  const [{ data, error, loading }, dispatch] = useReducer(
-    createReducer<Data>(),
-    initialState
-  );
-
+function useBaseAxios<Data>(url: string, config: AxiosRequestConfig): BaseAxios<Data>;
+function useBaseAxios<Data>(param1: string | AxiosRequestConfig, param2: AxiosRequestConfig = {}) {
   const isMounted = useRef(true);
+  const [{ data, error, loading }, dispatch] = useReducer(createReducer<Data>(), initialState);
   const { cancel, cancelToken } = useAxiosCancel();
 
   const invokeAxios =

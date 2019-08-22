@@ -12,9 +12,7 @@ export default () => {
   return (
     <>
       <h1>
-        <a href="https://github.com/angelle-sw/use-axios-client">
-          use-axios-client
-        </a>
+        <a href="https://github.com/angelle-sw/use-axios-client">use-axios-client</a>
       </h1>
 
       <div style={{ marginBottom: 50 }}>

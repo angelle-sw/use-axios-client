@@ -10,9 +10,7 @@ interface Data {
 
 export default () => {
   const [first, setFirst] = useState(true);
-  const { data, error, loading, refetch } = useAxios<Data>(
-    'https://reqres.in/api/things/1'
-  );
+  const { data, error, loading, refetch } = useAxios<Data>('https://reqres.in/api/things/1');
 
   if (first) {
     return (

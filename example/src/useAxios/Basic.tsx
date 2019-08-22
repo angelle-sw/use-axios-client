@@ -9,9 +9,7 @@ interface Data {
 }
 
 export default () => {
-  const { data, error, loading } = useAxios<Data>(
-    'https://reqres.in/api/things/1'
-  );
+  const { data, error, loading } = useAxios<Data>('https://reqres.in/api/things/1');
 
   return (
     <>
