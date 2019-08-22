@@ -5,7 +5,7 @@
     "jest": true
   },
   "parser": "@typescript-eslint/parser",
-  "extends": ["airbnb", "prettier", "plugin:@typescript-eslint/recommended"],
+  "extends": ["airbnb", "prettier"],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -27,8 +27,7 @@
     ],
     "prettier/prettier": "error",
     "react/jsx-filename-extension": "off",
-    "react/prop-types": "off",
-    "@typescript-eslint/explicit-function-return-type": "off"
+    "react/prop-types": "off"
   },
   "settings": {
     "import/resolver": {
@@ -36,5 +35,14 @@
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     }
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@typescript-eslint/recommended"],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": "off"
+      }
+    }
+  ]
 }
