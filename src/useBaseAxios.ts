@@ -9,7 +9,6 @@ interface RequestFunctions {
 }
 
 export type Props<Data> = RequestState<Data> & RequestFunctions;
-
 export type BaseAxios<Data> = [() => Promise<void>, Props<Data>];
 
 function useBaseAxios<Data>(url: string): BaseAxios<Data>;
@@ -22,21 +21,15 @@ function useBaseAxios<Data>(param1: string | AxiosRequestConfig, param2: AxiosRe
 
   const invokeAxios =
     typeof param1 === 'string'
-      ? () =>
-          axios(param1, {
-            ...param2,
-            cancelToken,
-          })
-      : () =>
-          axios({
-            ...param1,
-            cancelToken,
-          });
+      ? () => axios(param1, { ...param2, cancelToken })
+      : () => axios({ ...param1, cancelToken });
 
   const getData = async () => {
     dispatch({ type: 'REQUEST_INIT' });
+
     try {
       const res = (await invokeAxios()) as AxiosResponse<Data>;
+
       if (isMounted.current) {
         dispatch({ type: 'REQUEST_SUCCESS', payload: res.data });
       }

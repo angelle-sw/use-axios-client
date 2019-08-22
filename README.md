@@ -17,16 +17,16 @@ import { useAxios } from 'use-axios-client';
 
 export default () => {
   const { data, error, loading } = useAxios({
-    url: 'https://example/api'
+    url: 'https://example/api',
   });
 
-  return {
+  return (
     <>
       {loading && <div>Loading...</div>}
       {error && <div>{error.message}</div>}
       {data && <div>{data}</div>}
     </>
-  }
+  );
 };
 ```
 
@@ -37,17 +37,17 @@ import { useLazyAxios } from 'use-axios-client';
 
 export default () => {
   const [getData, { data, error, loading }] = useLazyAxios({
-    url: 'https://example/api'
+    url: 'https://example/api',
   });
 
-  return {
+  return (
     <>
       {loading && <div>Loading...</div>}
       {error && <div>{error.message}</div>}
       {data && <div>{data}</div>}
       <button onClick={getData}>get data</button>
     </>
-  }
+  );
 };
 ```
 
