@@ -63,10 +63,6 @@ function useBaseAxios<Data>(
     source = axios.CancelToken.source();
   };
 
-  const refetch = () => {
-    getData();
-  };
-
   useEffect(() => {
     return () => {
       cancel();
@@ -74,7 +70,7 @@ function useBaseAxios<Data>(
     };
   }, []);
 
-  return [getData, { cancel, data, error, loading, refetch }];
+  return [getData, { cancel, data, error, loading, refetch: getData }];
 }
 
 export default useBaseAxios;
