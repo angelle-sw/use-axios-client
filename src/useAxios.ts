@@ -13,21 +13,23 @@ function useAxios<Data>(param1: string | AxiosRequestConfig, param2: AxiosReques
       : () => useBaseAxios<Data>(param1);
 
   const config =
-    param1 === 'string'
+    typeof param1 === 'string'
       ? {
           url: param1,
           ...param2,
         }
       : param1;
 
-  const prevConfig = useRef(config);
+  const prevConfig = useRef<AxiosRequestConfig | null>(null);
 
   const [getData, dataStates] = invokeUseBaseAxios();
 
   useEffect(() => {
-    getData();
-    prevConfig.current = config;
-  }, [isEqual(config, prevConfig.current)]);
+    if (!isEqual(config, prevConfig.current)) {
+      getData();
+      prevConfig.current = config;
+    }
+  });
 
   return dataStates;
 }
