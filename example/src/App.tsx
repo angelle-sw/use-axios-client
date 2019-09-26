@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { UseAxiosBasic, UseAxiosCancel, UseAxiosRetry } from './useAxios';
+import { UseAxiosBasic, UseAxiosCancel, UseAxiosChange, UseAxiosRetry } from './useAxios';
 import {
   UseLazyAxiosBasic,
   UseLazyAxiosCancel,
@@ -19,6 +19,11 @@ export default () => {
       <div style={{ marginBottom: 50 }}>
         <h2>useAxios</h2>
         <UseAxiosBasic />
+      </div>
+
+      <div style={{ marginBottom: 50 }}>
+        <h2>useAxios with Changing Axios Payload</h2>
+        <UseAxiosChange />
       </div>
 
       <div style={{ marginBottom: 50 }}>

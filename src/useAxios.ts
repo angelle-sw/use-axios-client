@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { AxiosRequestConfig } from 'axios';
+import isEqual from 'lodash.isequal';
 import useBaseAxios, { Props } from './useBaseAxios';
 
 function useAxios<Data>(url: string): Props<Data>;
@@ -11,13 +12,22 @@ function useAxios<Data>(param1: string | AxiosRequestConfig, param2: AxiosReques
       ? () => useBaseAxios<Data>(param1, param2)
       : () => useBaseAxios<Data>(param1);
 
-  const url = typeof param1 === 'string' ? param1 : param1.url;
+  const config =
+    param1 === 'string'
+      ? {
+          url: param1,
+          ...param2,
+        }
+      : param1;
+
+  const prevConfig = useRef(config);
 
   const [getData, dataStates] = invokeUseBaseAxios();
 
   useEffect(() => {
     getData();
-  }, [url]);
+    prevConfig.current = config;
+  }, [isEqual(config, prevConfig.current)]);
 
   return dataStates;
 }

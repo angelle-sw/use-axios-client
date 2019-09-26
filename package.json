@@ -21,7 +21,9 @@
   },
   "homepage": "https://github.com/angelle-sw/use-axios-client#readme",
   "dependencies": {
-    "axios": "^0.19.0"
+    "@types/lodash.isequal": "^4.5.5",
+    "axios": "^0.19.0",
+    "lodash.isequal": "^4.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
