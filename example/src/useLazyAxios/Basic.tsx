@@ -24,7 +24,7 @@ export default () => {
           {data.data.color}
         </div>
       )}
-      <button type="button" disabled={loading} onClick={getData}>
+      <button type="button" disabled={loading} onClick={() => getData()}>
         get data
       </button>
     </>

@@ -3,6 +3,7 @@ import { UseAxiosBasic, UseAxiosCancel, UseAxiosRetry } from './useAxios';
 import {
   UseLazyAxiosBasic,
   UseLazyAxiosCancel,
+  UseLazyAxiosPostData,
   UseLazyAxiosRetry,
   UseLazyAxiosUnmount,
 } from './useLazyAxios';
@@ -55,6 +56,11 @@ export default () => {
       <div style={{ marginBottom: 50 }}>
         <h2>useLazyAxios with Retry</h2>
         <UseLazyAxiosRetry />
+      </div>
+
+      <div style={{ marginBottom: 50 }}>
+        <h2>useLazyAxios with POST</h2>
+        <UseLazyAxiosPostData />
       </div>
     </>
   );
