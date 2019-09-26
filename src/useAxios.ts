@@ -14,8 +14,8 @@ function useAxios<Data>(param1: string | AxiosRequestConfig, param2: AxiosReques
   const config =
     typeof param1 === 'string'
       ? {
-          url: param1,
           ...param2,
+          url: param1,
         }
       : param1;
 
