@@ -7,7 +7,7 @@
   "types": "bin/index.d.ts",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "lint": "eslint src/*.ts example/**/*.tsx webpack.config.js",
+    "lint": "eslint src/*.ts webpack.config.js",
     "prettier": "prettier --write **/*.{ts,tsx}",
     "test": "jest --watch",
     "test:once": "jest",
