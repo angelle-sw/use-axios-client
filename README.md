@@ -2,6 +2,8 @@
 
 Make axios requests in React using hooks.
 
+[![CircleCI](https://circleci.com/gh/angelle-sw/use-axios-client.svg?style=shield)](https://circleci.com/gh/angelle-sw/use-axios-client)
+
 ## Installation
 
 ```sh
