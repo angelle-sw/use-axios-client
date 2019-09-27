@@ -25,6 +25,7 @@
         "devDependencies": ["**/webpack.config.js", "**/*.test.ts"]
       }
     ],
+    "import/no-unresolved": "warn",
     "prettier/prettier": "error",
     "react/jsx-filename-extension": "off",
     "react/prop-types": "off"
