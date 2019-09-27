@@ -1,4 +1,8 @@
 import React from 'react';
+import Container from '../Container';
+import Heading from '../Heading';
+import TextBlock from '../TextBlock';
+import Button from '../Button';
 import { useAxios } from '../../../src';
 
 interface Data {
@@ -11,29 +15,31 @@ export default () => {
   });
 
   return (
-    <>
+    <Container>
+      <Heading>useAxios with Cancel</Heading>
+
       {loading && (
         <div>
-          <span>Loading...</span>
-          <button type="button" disabled={!loading} onClick={cancel}>
+          <TextBlock>Loading...</TextBlock>
+
+          <Button disabled={!loading} onClick={cancel}>
             cancel request
-          </button>
+          </Button>
         </div>
       )}
       {error && (
         <div>
-          <span>{error.message}</span>
-          <button
-            type="button"
+          <TextBlock>{error.message}</TextBlock>
+          <Button
             onClick={() => {
               refetch();
             }}
           >
             Retry
-          </button>
+          </Button>
         </div>
       )}
       {data && !loading && <div>{data.description}</div>}
-    </>
+    </Container>
   );
 };

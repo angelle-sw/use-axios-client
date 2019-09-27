@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import Container from '../Container';
+import Button from '../Button';
+import Heading from '../Heading';
+import TextBlock from '../TextBlock';
 import { useLazyAxios } from '../../../src';
 
 interface Data {
@@ -16,18 +20,22 @@ export default () => {
 
   if (!called) {
     return (
-      <>
-        {loading && 'Loading...'}
-        {error && error.message}
-        {data && !loading && (
-          <div>
-            {data.data.name}
-            {': '}
-            {data.data.color}
-          </div>
-        )}
-        <button
-          type="button"
+      <Container>
+        <Heading>useLazyAxios with Retry</Heading>
+
+        <TextBlock>
+          {loading && 'Loading...'}
+          {error && error.message}
+          {data && !loading && (
+            <div>
+              {data.data.name}
+              {': '}
+              {data.data.color}
+            </div>
+          )}
+        </TextBlock>
+
+        <Button
           disabled={loading}
           onClick={() => {
             getData();
@@ -35,28 +43,31 @@ export default () => {
           }}
         >
           get data
-        </button>
-      </>
+        </Button>
+      </Container>
     );
   }
 
   return (
-    <>
-      {loading && 'Loading...'}
-      {(error || data) && (
+    <Container>
+      <Heading>useLazyAxios with Retry</Heading>
+
+      {loading && <TextBlock>Loading</TextBlock>}
+
+      {!loading && (error || data) && (
         <div>
-          <span>Error!</span>
-          <button
-            type="button"
+          <TextBlock>Error!</TextBlock>
+
+          <Button
             onClick={() => {
               refetch();
               setCalled(false);
             }}
           >
             Retry
-          </button>
+          </Button>
         </div>
       )}
-    </>
+    </Container>
   );
 };

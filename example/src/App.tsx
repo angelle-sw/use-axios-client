@@ -1,89 +1,14 @@
-import React, { useState } from 'react';
-import {
-  UseAxiosBasic,
-  UseAxiosCancel,
-  UseAxiosChange,
-  UseAxiosRetry,
-  UseAxiosCustomInstance,
-} from './useAxios';
-import {
-  UseLazyAxiosBasic,
-  UseLazyAxiosCancel,
-  UseLazyAxiosPostData,
-  UseLazyAxiosRetry,
-  UseLazyAxiosUnmount,
-} from './useLazyAxios';
-import CompiledUsage from './compiledUsage';
+import { ThemeProvider, CSSReset } from '@chakra-ui/core';
+import React from 'react';
+import Header from './Header';
+import Router from './Router';
 
 export default () => {
-  const [mount, setMount] = useState(true);
   return (
-    <>
-      <h1>
-        <a href="https://github.com/angelle-sw/use-axios-client">use-axios-client</a>
-      </h1>
-
-      <div style={{ marginBottom: 50 }}>
-        <h2>useAxios</h2>
-        <UseAxiosBasic />
-      </div>
-
-      <div style={{ marginBottom: 50 }}>
-        <h2>useAxios with Changing Axios Payload</h2>
-        <UseAxiosChange />
-      </div>
-
-      <div style={{ marginBottom: 50 }}>
-        <h2>useAxios with Cancel</h2>
-        <UseAxiosCancel />
-      </div>
-
-      <div style={{ marginBottom: 50 }}>
-        <h2>useAxios with Retry</h2>
-        <UseAxiosRetry />
-      </div>
-
-      <div style={{ marginBottom: 50 }}>
-        <h2>useAxios with Custom Instance</h2>
-        <UseAxiosCustomInstance />
-      </div>
-
-      <div style={{ marginBottom: 50 }}>
-        <h2>useLazyAxios</h2>
-        <UseLazyAxiosBasic />
-      </div>
-
-      <div style={{ marginBottom: 50 }}>
-        {mount && (
-          <>
-            <h2>useLazyAxios Unmount</h2>
-            <UseLazyAxiosUnmount />
-          </>
-        )}
-        <button type="button" onClick={() => setMount(!mount)}>
-          toggle mount
-        </button>
-      </div>
-
-      <div style={{ marginBottom: 50 }}>
-        <h2>useLazyAxios with Cancel</h2>
-        <UseLazyAxiosCancel />
-      </div>
-
-      <div style={{ marginBottom: 50 }}>
-        <h2>useLazyAxios with Retry</h2>
-        <UseLazyAxiosRetry />
-      </div>
-
-      <div style={{ marginBottom: 50 }}>
-        <h2>useLazyAxios with POST</h2>
-        <UseLazyAxiosPostData />
-      </div>
-
-      <div style={{ marginBottom: 50 }}>
-        <h2>Compiled Usage</h2>
-        <CompiledUsage />
-      </div>
-    </>
+    <ThemeProvider>
+      <CSSReset />
+      <Header />
+      <Router />
+    </ThemeProvider>
   );
 };

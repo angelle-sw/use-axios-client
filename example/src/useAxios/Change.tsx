@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import Container from '../Container';
+import Heading from '../Heading';
+import TextBlock from '../TextBlock';
+import Button from '../Button';
 import { useAxios } from '../../../src';
 
 interface Data {
@@ -16,42 +20,24 @@ export default () => {
   });
 
   return (
-    <>
-      {loading && 'Loading...'}
-      {error && error}
-      {data && !loading && (
-        <>
+    <Container>
+      <Heading>useAxios with Changing Axios Payload</Heading>
+
+      <TextBlock>
+        {loading && 'Loading...'}
+        {error && error}
+        {data && !loading && (
           <div>
             {data.data.name}
             {': '}
             {data.data.color}
           </div>
-          <button
-            type="button"
-            onClick={() => {
-              setNum('1');
-            }}
-          >
-            1
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setNum('2');
-            }}
-          >
-            2
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setNum('3');
-            }}
-          >
-            3
-          </button>
-        </>
-      )}
-    </>
+        )}
+      </TextBlock>
+
+      <Button onClick={() => setNum('1')}>1</Button>
+      <Button onClick={() => setNum('2')}>2</Button>
+      <Button onClick={() => setNum('3')}>3</Button>
+    </Container>
   );
 };
