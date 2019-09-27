@@ -13,6 +13,7 @@ import {
   UseLazyAxiosRetry,
   UseLazyAxiosUnmount,
 } from './useLazyAxios';
+import CompiledUsage from './compiledUsage';
 
 export default () => {
   const [mount, setMount] = useState(true);
@@ -77,6 +78,11 @@ export default () => {
       <div style={{ marginBottom: 50 }}>
         <h2>useLazyAxios with POST</h2>
         <UseLazyAxiosPostData />
+      </div>
+
+      <div style={{ marginBottom: 50 }}>
+        <h2>Compiled Usage</h2>
+        <CompiledUsage />
       </div>
     </>
   );

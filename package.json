@@ -2,13 +2,17 @@
   "name": "use-axios-client",
   "version": "1.0.0",
   "description": "Make axios requests in React using hooks.",
+  "sideEffects": false,
   "main": "bin/index.min.js",
+  "types": "bin/index.d.ts",
   "scripts": {
-    "lint": "./node_modules/.bin/eslint src/*.ts example/**/*.tsx webpack.config.js",
-    "prepare": "webpack --config webpack.config.js",
-    "prettier": "./node_modules/.bin/prettier --write **/*.{ts,tsx}",
+    "build": "webpack --config webpack.config.js",
+    "lint": "eslint src/*.ts example/**/*.tsx webpack.config.js",
+    "prettier": "prettier --write **/*.{ts,tsx}",
     "test": "jest --watch",
-    "tsc": "tsc --noEmit"
+    "test:once": "jest",
+    "tsc": "tsc --emitDeclarationOnly",
+    "prepare": "npm run lint && npm run test:once && npm run tsc && npm run build"
   },
   "repository": {
     "type": "git",
