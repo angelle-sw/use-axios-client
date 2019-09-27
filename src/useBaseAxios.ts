@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios';
 import useAxiosReducer, { RequestState } from './useAxiosReducer';
 import useAxiosCancel from './useAxiosCancel';
 
@@ -8,29 +8,46 @@ interface RequestFunctions {
   refetch: () => Promise<void>;
 }
 
+export interface Config extends AxiosRequestConfig {
+  axiosInstance?: AxiosInstance;
+}
+
 export type Props<Data> = RequestState<Data> & RequestFunctions;
-export type BaseAxios<Data> = [
-  (lazyData?: AxiosRequestConfig['data']) => Promise<void>,
-  Props<Data>
-];
+export type BaseAxios<Data> = [(lazyData?: Config['data']) => Promise<void>, Props<Data>];
 
 function useBaseAxios<Data>(url: string): BaseAxios<Data>;
-function useBaseAxios<Data>(config: AxiosRequestConfig): BaseAxios<Data>;
-function useBaseAxios<Data>(url: string, config: AxiosRequestConfig): BaseAxios<Data>;
-function useBaseAxios<Data>(param1: string | AxiosRequestConfig, param2: AxiosRequestConfig = {}) {
+function useBaseAxios<Data>(config: Config): BaseAxios<Data>;
+function useBaseAxios<Data>(url: string, config: Config): BaseAxios<Data>;
+function useBaseAxios<Data>(param1: string | Config, param2: Config = {}) {
   const isMounted = useRef(true);
   const [{ data, error, loading }, dispatch] = useAxiosReducer<Data>();
   const { cancel, cancelToken } = useAxiosCancel();
 
-  const invokeAxios =
-    typeof param1 === 'string'
-      ? (lazyData: AxiosRequestConfig['data']) =>
-          axios(param1, { ...param2, data: lazyData || param2.data, cancelToken })
-      : (lazyData: AxiosRequestConfig['data']) => {
-          return axios({ ...param1, data: lazyData || param1.data, cancelToken });
-        };
+  const createAxiosInvoker = () => {
+    if (typeof param1 === 'string') {
+      const { axiosInstance = axios, ...config } = param2;
 
-  const getData = async (lazyData: AxiosRequestConfig['data']) => {
+      return (lazyData: Config['data']) =>
+        axiosInstance(param1, {
+          ...config,
+          data: lazyData || param2.data,
+          cancelToken,
+        });
+    }
+
+    const { axiosInstance = axios, ...config } = param1;
+
+    return (lazyData: Config['data']) =>
+      axiosInstance({
+        ...config,
+        data: lazyData || param1.data,
+        cancelToken,
+      });
+  };
+
+  const invokeAxios = createAxiosInvoker();
+
+  const getData = async (lazyData: Config['data']) => {
     dispatch({ type: 'REQUEST_INIT' });
 
     try {

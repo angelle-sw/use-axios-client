@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { UseAxiosBasic, UseAxiosCancel, UseAxiosChange, UseAxiosRetry } from './useAxios';
+import {
+  UseAxiosBasic,
+  UseAxiosCancel,
+  UseAxiosChange,
+  UseAxiosRetry,
+  UseAxiosCustomInstance,
+} from './useAxios';
 import {
   UseLazyAxiosBasic,
   UseLazyAxiosCancel,
@@ -34,6 +40,11 @@ export default () => {
       <div style={{ marginBottom: 50 }}>
         <h2>useAxios with Retry</h2>
         <UseAxiosRetry />
+      </div>
+
+      <div style={{ marginBottom: 50 }}>
+        <h2>useAxios with Custom Instance</h2>
+        <UseAxiosCustomInstance />
       </div>
 
       <div style={{ marginBottom: 50 }}>
