@@ -1,4 +1,9 @@
 import React, { useState } from 'react';
+import Container from '../Container';
+import Heading from '../Heading';
+import TextBlock from '../TextBlock';
+import Input from '../Input';
+import Button from '../Button';
 import { useLazyAxios } from '../../../src';
 
 export default () => {
@@ -10,25 +15,27 @@ export default () => {
   });
 
   return (
-    <>
-      {loading && 'Loading...'}
-      {error && error.message}
-      {data && !loading && <div>POST Successful</div>}
-      {!data && !error && !loading && (
-        <label htmlFor="name">
-          Name:
-          <input
+    <Container>
+      <Heading>useLazyAxios with POST</Heading>
+
+      <TextBlock>
+        {loading && 'Loading...'}
+        {error && error.message}
+        {data && !loading && <div>POST Successful</div>}
+        {!data && !error && !loading && (
+          <Input
             id="name"
             value={name}
             onChange={event => {
               setName(event.target.value);
             }}
           />
-        </label>
-      )}
-      <button type="button" disabled={loading} onClick={() => getData({ name })}>
+        )}
+      </TextBlock>
+
+      <Button disabled={loading} onClick={() => getData({ name })}>
         get data
-      </button>
-    </>
+      </Button>
+    </Container>
   );
 };
