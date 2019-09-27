@@ -1,0 +1,11 @@
+version: 2
+machine:
+  node:
+    version: 12.11.0
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm run prepare
