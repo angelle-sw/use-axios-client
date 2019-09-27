@@ -1,5 +1,5 @@
-const config = {
-  devtool: 'inline-source-map',
+module.exports = {
+  devtool: 'source-map',
   entry: `${__dirname}/src/index.ts`,
   externals: {
     react: 'react',
@@ -18,17 +18,12 @@ const config = {
   },
   output: {
     path: `${__dirname}/bin`,
-    filename: 'index.min.js',
-    library: 'use-axios-client',
-    libraryTarget: 'umd',
-    umdNamedDefine: true,
+    filename: 'index.js',
+    libraryTarget: 'commonjs',
     globalObject: "typeof self !== 'undefined' ? self : this",
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     modules: ['node_modules'],
   },
-  target: 'node',
 };
-
-module.exports = config;

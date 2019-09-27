@@ -4,8 +4,9 @@
   "description": "Example app for use-axios-client",
   "main": "src/index.js",
   "scripts": {
-    "start": "webpack-dev-server --open --mode development",
-    "build": "webpack --mode production"
+    "start": "npm run prepare-lib && webpack-dev-server --open --mode development",
+    "build": "npm run prepare-lib && webpack --mode production",
+    "prepare-lib": "cd .. && npm run prepare && cd example"
   },
   "author": "JP Angelle, Zak Angelle",
   "license": "MIT",
