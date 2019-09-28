@@ -6,8 +6,16 @@ Make axios requests in React using hooks.
 
 ## Installation
 
+with npm:
+
 ```sh
 $ npm install use-axios-client
+```
+
+with yarn:
+
+```sh
+$ yarn add use-axios-client
 ```
 
 ## Usage
@@ -91,21 +99,21 @@ export default () => {
 Install dependencies:
 
 ```
-$ npm install
+$ yarn
 ```
 
 Run the example app at [http://localhost:8080](http://localhost:8080):
 
 ```
 $ cd example
-$ npm install
-$ npm start
+$ yarn
+$ yarn start
 ```
 
 Run tests using [jest](https://github.com/facebook/jest):
 
 ```
-$ npm test
+$ yarn test
 ```
 
 ## License
