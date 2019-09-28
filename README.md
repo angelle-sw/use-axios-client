@@ -98,13 +98,13 @@ export default () => {
 
 Install dependencies:
 
-```
+```sh
 $ yarn
 ```
 
 Run the example app at [http://localhost:8080](http://localhost:8080):
 
-```
+```sh
 $ cd example
 $ yarn
 $ yarn start
@@ -112,7 +112,7 @@ $ yarn start
 
 Run tests using [jest](https://github.com/facebook/jest):
 
-```
+```sh
 $ yarn test
 ```
 
