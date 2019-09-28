@@ -96,6 +96,13 @@ test.skip('error is truthy when axios request rejects', async () => {
 });
 
 test('request is cancelled on unmount', () => {
+  const cancel = jest.fn();
+
+  CancelToken.source = jest.fn().mockImplementation(() => ({
+    token: 'abc',
+    cancel,
+  }));
+
   mockedAxios.mockResolvedValue({ data: {} });
 
   const { result, unmount } = renderHook(() =>
@@ -117,6 +124,7 @@ test('request is cancelled on unmount', () => {
 
   const { data, loading } = result.current[1];
 
+  expect(cancel).toHaveBeenCalled();
   expect(data).toBe(null);
   expect(loading).toBe(true);
 });
