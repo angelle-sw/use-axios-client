@@ -14,6 +14,7 @@ const { CancelToken } = axios;
 beforeEach(() => {
   CancelToken.source = jest.fn().mockImplementation(() => ({
     token: 'abc',
+    cancel: () => {},
   }));
 });
 
@@ -92,4 +93,30 @@ test.skip('error is truthy when axios request rejects', async () => {
   expect(data).toBeFalsy();
   expect(error).toBeTruthy();
   expect(loading).toBe(false);
+});
+
+test('request is cancelled on unmount', () => {
+  mockedAxios.mockResolvedValue({ data: {} });
+
+  const { result, unmount } = renderHook(() =>
+    useBaseAxios({
+      method: 'get',
+      url: '/test',
+    })
+  );
+
+  const getData = result.current[0];
+
+  act(() => {
+    getData();
+  });
+
+  act(() => {
+    unmount();
+  });
+
+  const { data, loading } = result.current[1];
+
+  expect(data).toBe(null);
+  expect(loading).toBe(true);
 });
