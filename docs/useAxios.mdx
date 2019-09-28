@@ -1,0 +1,57 @@
+---
+name: useAxios
+route: /use-axios
+---
+
+# useAxios
+
+```js
+import { useAxios } from 'use-axios-client';
+
+export default () => {
+  const { data, error, loading } = useAxios({
+    url: 'https://example/api',
+  });
+
+  return (
+    <>
+      {loading && <div>Loading...</div>}
+      {error && <div>{error.message}</div>}
+      {data && <div>{data}</div>}
+    </>
+  );
+};
+```
+
+### with TypeScript
+
+```ts
+import { useAxios } from 'use-axios-client';
+
+interface Data {
+  data: {
+    name: string;
+    color: string;
+  };
+}
+
+export default () => {
+  const { data, error, loading } = useAxios<Data>({
+    url: 'https://example/api',
+  });
+
+  return (
+    <>
+      {loading && <div>Loading...</div>}
+      {error && <div>{error.message}</div>}
+      {data && (
+        <div>
+          {data.data.name}
+          {': '}
+          {data.data.color}
+        </div>
+      )}
+    </>
+  );
+};
+```

@@ -12,6 +12,8 @@
     "test": "jest --watch",
     "test:once": "jest",
     "tsc": "tsc --emitDeclarationOnly",
+    "docs": "docz dev",
+    "docs:build": "docz build",
     "prepare": "yarn lint && yarn test:once && yarn tsc && yarn build"
   },
   "repository": {
@@ -44,6 +46,7 @@
     "@typescript-eslint/parser": "^2.0.0",
     "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.6",
+    "docz": "^2.0.0-rc.45",
     "eslint": "^6.1.0",
     "eslint-config-airbnb": "^18.0.0",
     "eslint-config-prettier": "^6.0.0",

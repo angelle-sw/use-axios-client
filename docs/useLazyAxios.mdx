@@ -1,0 +1,53 @@
+---
+name: useLazyAxios
+route: /use-lazy-axios
+---
+
+# useLazyAxios
+
+```js
+import { useLazyAxios } from 'use-axios-client';
+
+export default () => {
+  const [getData, { data, error, loading }] = useLazyAxios({
+    url: 'https://example/api',
+  });
+
+  return (
+    <>
+      {loading && <div>Loading...</div>}
+      {error && <div>{error.message}</div>}
+      {data && <div>{data}</div>}
+      <button onClick={getData}>get data</button>
+    </>
+  );
+};
+```
+
+### with TypeScript
+
+```ts
+import { useLazyAxios } from 'use-axios-client';
+
+interface Data {
+  data: {
+    name: string;
+    color: string;
+  };
+}
+
+export default () => {
+  const [getData, { data, error, loading }] = useLazyAxios<Data>({
+    url: 'https://example/api',
+  });
+
+  return (
+    <>
+      {loading && <div>Loading...</div>}
+      {error && <div>{error.message}</div>}
+      {data && <div>{data}</div>}
+      <button onClick={getData}>get data</button>
+    </>
+  );
+};
+```
