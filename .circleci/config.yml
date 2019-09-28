@@ -5,5 +5,5 @@ jobs:
       - image: circleci/node:10.15.3
     steps:
       - checkout
-      - run: npm install
-      - run: npm run prepare
+      - run: yarn
+      - run: yarn prepare

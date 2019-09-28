@@ -12,7 +12,7 @@
     "test": "jest --watch",
     "test:once": "jest",
     "tsc": "tsc --emitDeclarationOnly",
-    "prepare": "npm run lint && npm run test:once && npm run tsc && npm run build"
+    "prepare": "yarn lint && yarn test:once && yarn tsc && yarn build"
   },
   "repository": {
     "type": "git",
