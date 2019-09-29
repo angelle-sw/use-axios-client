@@ -20,7 +20,9 @@ export const initialState = {
 const createReducer = <Data>() => (
   state: RequestState<Data>,
   action: Action<Data>
+  /* eslint-disable-next-line consistent-return */
 ): RequestState<Data> => {
+  /* eslint-disable-next-line default-case */
   switch (action.type) {
     case 'REQUEST_INIT':
       return {
@@ -41,8 +43,6 @@ const createReducer = <Data>() => (
         error: action.payload,
         loading: false,
       };
-    default:
-      throw new Error('Unknown Error');
   }
 };
 
