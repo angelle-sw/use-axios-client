@@ -1,8 +1,23 @@
-# use-axios-client
+<div align="center">
+<h1>use-axios-client</h1>
 
-Make axios requests in React using hooks.
+<a href="https://www.emojione.com/emoji/1f3a3">
+  <img
+    height="80"
+    width="80"
+    alt="hook"
+    src="hook_emoji.png"
+  />
+</a>
 
-[![CircleCI](https://circleci.com/gh/angelle-sw/use-axios-client.svg?style=shield)](https://circleci.com/gh/angelle-sw/use-axios-client)
+<p>Make axios requests in React using hooks.</p>
+
+[Docs](https://use-axios-client.io/)
+
+</div>
+<hr />
+
+[![CircleCI](https://circleci.com/gh/angelle-sw/use-axios-client.svg?style=shield)](https://circleci.com/gh/angelle-sw/use-axios-client) [![codecov](https://codecov.io/gh/angelle-sw/use-axios-client/branch/master/graph/badge.svg)](https://codecov.io/gh/angelle-sw/use-axios-client) [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 
 ## Installation
 
