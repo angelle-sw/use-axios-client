@@ -1,0 +1,54 @@
+---
+name: Getting Started
+route: /
+parent: Basics
+---
+
+import { Link } from 'gatsby';
+
+# Getting started
+
+Make [axios](https://github.com/axios/axios) requests in React using hooks.
+
+- Manages your request state so you can focus on building your UI
+- Accepts standard [axios request config](https://github.com/axios/axios#request-config) so writing requests feels familiar
+- Provides type definitions and generic functions so you can write typesafe code
+- No superficial "blazing fast" claims or esoteric emojis
+
+## Installation
+
+with npm:
+
+```sh
+$ npm install use-axios-client
+```
+
+with yarn:
+
+```sh
+$ yarn add use-axios-client
+```
+
+_*Note*: Also requires that you use React 16.8.0 or higher._
+
+## Usage
+
+Here is a simple example of using the [useAxios](/use-axios) hook:
+
+```jsx
+import { useAxios } from 'use-axios-client';
+
+export default () => {
+  const { data, error, loading } = useAxios({
+    url: 'https://example/api',
+  });
+
+  return (
+    <>
+      {loading && <div>Loading...</div>}
+      {error && <div>{error.message}</div>}
+      {data && <div>{data}</div>}
+    </>
+  );
+};
+```

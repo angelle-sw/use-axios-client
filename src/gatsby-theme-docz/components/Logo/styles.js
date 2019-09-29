@@ -1,5 +1,6 @@
 export const logo = {
-  marginTop: '6px',
-  height: 24,
+  fontSize: '22px',
   color: '#fff',
+  lineHeight: '39px',
+  letterSpacing: '-1px',
 };

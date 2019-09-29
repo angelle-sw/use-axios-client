@@ -1,11 +1,14 @@
 ---
 name: useLazyAxios
 route: /use-lazy-axios
+parent: Hooks
 ---
 
 # useLazyAxios
 
-Sometimes you don't want to trigger a request as soon as your component renders. The `useLazyAxios` hook can be used to make an axios request imperatively at any time. This is useful for scenarios like triggering requests when a user submits a form or changes filter options.
+Sometimes you don't want to trigger a request as soon as your component renders.
+
+The `useLazyAxios` hook can be used to make an axios request imperatively at any time. This is useful for scenarios like triggering requests when a user submits a form or changes filter options.
 
 ## Usage
 
@@ -40,7 +43,9 @@ If needed, these additional options can be passed to the hook to configure your 
 
 ## Response
 
-These response values are returned by the `useLazyAxios` hook, and can be used to handle each state of your request. It also provides several functions that allow you to interact with the request in an imperative way if needed.
+These response values are returned by the `useLazyAxios` hook and can be used to handle each state of your request.
+
+It also provides several functions that allow you to interact with the request in an imperative way if needed.
 
 | Property  | Type                  | Description                                                  |
 | --------- | --------------------- | ------------------------------------------------------------ |

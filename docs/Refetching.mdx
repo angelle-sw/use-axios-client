@@ -1,0 +1,31 @@
+---
+name: Refetching
+route: /refetching
+parent: Advanced
+---
+
+# Refetching
+
+You can use the `refetch` function provided by the hook to trigger another request at any time.
+
+Common use cases:
+
+- Allow the user to retry a failed request
+- Provide the user with a way to refresh data on-demand
+- Periodically request new data to keep UI up-to-date
+
+## Usage
+
+```jsx
+import { useAxios } from 'use-axios-client';
+
+export default () => {
+  const { error, refetch } = useAxios({
+    url: 'https://example/api',
+  });
+
+  if (error) {
+    return <Button onClick={() => refetch()}>Retry</Button>;
+  }
+};
+```

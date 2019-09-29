@@ -1,9 +1,11 @@
 export const link = {
-  my: 2,
+  mx: '10px',
+  my: '10px',
   display: 'block',
   color: '#012e3f',
   textDecoration: 'none',
-  fontSize: 2,
+  fontWeight: 300,
+  fontSize: '18px',
   '&.active': {
     fontWeight: 600,
   },

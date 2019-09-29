@@ -6,12 +6,20 @@ module.exports = {
   repository: 'https://github.com/angelle-sw/use-axios-client',
   typescript: true,
   ignore: ['*.md'],
-  menu: ['Introduction', 'useAxios', 'useLazyAxios', 'TypeScript'],
+  menu: [
+    'Getting Started',
+    'useAxios',
+    'useLazyAxios',
+    'TypeScript',
+    'Refetching',
+    'Cancelling Requests',
+    'Custom Axios Instance',
+  ],
   themeConfig: {
     prism: {
       light: {
         plain: {
-          color: '#2f7973',
+          color: '#012e3f',
           backgroundColor: '#f6f8fa',
         },
         styles: [
@@ -37,7 +45,7 @@ module.exports = {
           {
             types: ['punctuation', 'operator'],
             style: {
-              color: '#393A34',
+              color: '#393a34',
             },
           },
           {
@@ -60,7 +68,7 @@ module.exports = {
           {
             types: ['atrule', 'keyword', 'attr-name', 'selector'],
             style: {
-              color: '#00a4db',
+              color: '#9161a9',
             },
           },
           {
@@ -78,7 +86,7 @@ module.exports = {
           {
             types: ['tag', 'selector', 'keyword'],
             style: {
-              color: '#012e3f',
+              color: '#2f7973',
             },
           },
         ],
@@ -113,6 +121,7 @@ module.exports = {
         },
       },
       pre: {
+        marginTop: 0,
         fontSize: 16,
       },
       table: {
@@ -125,6 +134,10 @@ module.exports = {
       },
       td: {
         borderColor: '#cbd9dc !important',
+      },
+      ul: {
+        paddingLeft: 30,
+        fontSize: 17,
       },
       li: {
         fontWeight: 300,

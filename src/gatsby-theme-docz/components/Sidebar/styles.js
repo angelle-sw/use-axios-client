@@ -20,7 +20,7 @@ export const overlay = ({ open }) => ({
 });
 
 export const wrapper = ({ open }) => ({
-  py: 5,
+  py: '24px',
   px: 5,
   flexDirection: 'column',
   position: 'sticky',
@@ -46,3 +46,9 @@ export const wrapper = ({ open }) => ({
     transform: open ? 'translateX(0)' : 'translateX(-100%)',
   },
 });
+
+export const menuHeader = {
+  marginTop: '30px',
+  fontWeight: 300,
+  fontSize: '22px',
+};

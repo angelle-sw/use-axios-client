@@ -11,7 +11,7 @@ export const wrapper = {
   flex: 1,
   display: 'grid',
   gridTemplateRows: '100%',
-  gridTemplateColumns: '300px 1fr',
+  gridTemplateColumns: '325px 1fr',
   [media.tablet]: {
     display: 'block',
   },

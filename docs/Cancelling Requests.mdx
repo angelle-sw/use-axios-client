@@ -1,0 +1,35 @@
+---
+name: Cancelling Requests
+route: /cancelling-requests
+parent: Advanced
+---
+
+# Cancelling Requests
+
+You can use the `cancel` function provided by the hook to cancel an in-flight request.
+
+_Note: Requests are automatically cancelled when a component hosting a hook is unmounted._
+
+## Usage
+
+```jsx
+import { useLazyAxios } from 'use-axios-client';
+
+export default () => {
+  const [saveData, { loading, cancel }] = useLazyAxios({
+    url: 'https://example/api',
+  });
+
+  return (
+    <>
+      <Button disabled={loading} onClick={() => saveData({ name: 'JP' })}>
+        Save
+      </Button>
+
+      <Button disabled={!loading} onClick={() => cancel()}>
+        Cancel
+      </Button>
+    </>
+  );
+};
+```

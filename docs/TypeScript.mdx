@@ -1,6 +1,7 @@
 ---
 name: TypeScript
 route: /typescript
+parent: Advanced
 ---
 
 # TypeScript
@@ -13,7 +14,7 @@ You can use TypeScript to get full type safety in your components.
 
 ```ts
 interface Data {
-  name: string:
+  name: string;
   age: number;
 }
 ```
@@ -26,7 +27,7 @@ const { data, error, loading } = useAxios<Data>({
 });
 ```
 
-You'll now have full type safety in your components as you develop:
+This gives you full type safety in your components as you develop:
 
 ```ts
 return <div>{data.location}</div>;
