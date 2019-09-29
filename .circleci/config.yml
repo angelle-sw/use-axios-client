@@ -11,4 +11,4 @@ jobs:
       - run: yarn prepare
       - run: yarn test --coverage --watchAll=false
       - codecov/upload:
-          file: coverage/clover.xml
+          file: coverage/*.json
