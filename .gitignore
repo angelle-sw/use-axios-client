@@ -2,3 +2,4 @@ node_modules
 bin
 .gitconfig
 .docz
+coverage
