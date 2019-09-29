@@ -35,7 +35,7 @@ export const Layout = ({ children }) => {
           />
           <Container sx={styles.content} data-testid="main-container">
             <Box sx={styles.menuIcon}>
-              <button sx={styles.menuButton} onClick={handleMenu}>
+              <button type="button" sx={styles.menuButton} onClick={handleMenu}>
                 <Menu size={25} />
               </button>
             </Box>

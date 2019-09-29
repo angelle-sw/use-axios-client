@@ -24,11 +24,9 @@ export const content = {
   py: 5,
   px: 4,
   [media.tablet]: {
-    maxWidth: '100%',
     margin: 0,
     py: 4,
-    px: 5,
-    pt: 5,
+    px: 4,
   },
 };
 

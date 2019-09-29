@@ -1,6 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Work+Sans:200,300,400,500,600,700,800,900&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
 
+@media screen and (max-width: 57.5em) {
+  h1 {
+    font-size: 38px !important;
+  }
+
+  h2 {
+    font-size: 26px !important;
+  }
+}
+
 table code {
   font-size: 16px;
 }

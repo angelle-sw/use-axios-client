@@ -9,7 +9,7 @@ export const global = {
 export const overlay = ({ open }) => ({
   zIndex: 999,
   position: 'fixed',
-  top: 104,
+  top: 71,
   right: 0,
   bottom: 0,
   left: 0,
@@ -20,7 +20,6 @@ export const overlay = ({ open }) => ({
 });
 
 export const wrapper = ({ open }) => ({
-  py: '24px',
   px: 5,
   flexDirection: 'column',
   position: 'sticky',
@@ -36,10 +35,10 @@ export const wrapper = ({ open }) => ({
     zIndex: 9999,
     display: 'block',
     position: 'fixed',
-    top: 104,
+    top: 71,
     left: 0,
     bottom: 0,
-    width: 256,
+    width: 270,
     px: 4,
     bg: 'background',
     transition: 'transform .2s ease-out',
