@@ -14,6 +14,7 @@
     "tsc": "tsc --emitDeclarationOnly",
     "docs": "docz dev",
     "docs:build": "docz build",
+    "docs:prepare": "yarn docs:build && cp -r src .docz && yarn docs:build",
     "prepare": "yarn lint && yarn test:once && yarn tsc && yarn build"
   },
   "repository": {
