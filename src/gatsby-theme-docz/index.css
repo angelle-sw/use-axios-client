@@ -1,2 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Work+Sans:200,300,400,500,600,700,800,900&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
+
+table code {
+  font-size: 16px;
+}
+
+p > code,
+li > code {
+  padding: 3px 7px;
+  font-size: 17px;
+  background: #f3f8f9;
+  border: 1px solid #d4e1e4;
+  border-radius: 4px;
+}

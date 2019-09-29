@@ -10,10 +10,10 @@ module.exports = {
     'Getting Started',
     'useAxios',
     'useLazyAxios',
-    'TypeScript',
     'Refetching',
     'Cancelling Requests',
     'Custom Axios Instance',
+    'TypeScript',
   ],
   themeConfig: {
     prism: {
@@ -124,6 +124,9 @@ module.exports = {
         marginTop: 0,
         fontSize: 16,
       },
+      code: {
+        fontSize: 10,
+      },
       table: {
         fontSize: 18,
         fontWeight: 300,
@@ -141,6 +144,9 @@ module.exports = {
       },
       li: {
         fontWeight: 300,
+      },
+      em: {
+        fontSize: '18px',
       },
     },
   },
