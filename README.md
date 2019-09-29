@@ -6,7 +6,7 @@
     height="80"
     width="80"
     alt="hook"
-    src="hook_emoji.png"
+    src="https://i.imgur.com/0w5pOpf.png"
   />
 </a>
 
