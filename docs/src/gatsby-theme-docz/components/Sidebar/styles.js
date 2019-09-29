@@ -21,6 +21,7 @@ export const overlay = ({ open }) => ({
 
 export const wrapper = ({ open }) => ({
   px: 5,
+  py: 3,
   flexDirection: 'column',
   position: 'sticky',
   top: 0,
@@ -40,6 +41,7 @@ export const wrapper = ({ open }) => ({
     bottom: 0,
     width: 270,
     px: 4,
+    py: 2,
     bg: 'background',
     transition: 'transform .2s ease-out',
     transform: open ? 'translateX(0)' : 'translateX(-100%)',

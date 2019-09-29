@@ -7,7 +7,6 @@ export const main = {
 };
 
 export const wrapper = {
-  py: 0,
   flex: 1,
   display: 'grid',
   gridTemplateRows: '100%',
