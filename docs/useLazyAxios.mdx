@@ -1,6 +1,6 @@
 ---
 name: useLazyAxios
-route: /use-lazy-axios
+route: /use-lazy-axios/
 parent: Hooks
 ---
 
@@ -10,7 +10,7 @@ Sometimes you don't want to trigger a request as soon as your component renders.
 
 The `useLazyAxios` hook can be used to make an axios request imperatively at any time. This is useful for scenarios like triggering requests when a user submits a form or changes filter options.
 
-## Usage
+## Example
 
 ```jsx
 import { useLazyAxios } from 'use-axios-client';
@@ -25,10 +25,16 @@ export default () => {
       {loading && <div>Loading...</div>}
       {error && <div>{error.message}</div>}
       {data && <div>{data}</div>}
-      <button onClick={getData}>get data</button>
+      <button onClick={() => getData()}>Get data</button>
     </>
   );
 };
+```
+
+`getData` also takes a `data` argument that you can use in place of passing your data to the hook.
+
+```js
+<button onClick={() => getData({ animal: 'goat' })}>Get data</button>
 ```
 
 ## Request

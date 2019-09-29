@@ -24,16 +24,18 @@ export const content = {
   py: 5,
   px: 4,
   [media.tablet]: {
+    maxWidth: '100%',
+    margin: 0,
     py: 4,
-    px: 4,
+    px: 5,
     pt: 5,
   },
 };
 
 export const menuIcon = {
   position: 'absolute',
-  top: 15,
-  left: 30,
+  top: -48,
+  left: 20,
   display: 'none',
   [media.tablet]: {
     display: 'block',
@@ -42,6 +44,6 @@ export const menuIcon = {
 
 export const menuButton = {
   ...mixins.ghostButton,
-  color: 'header.text',
-  opacity: 0.5,
+  color: '#fff',
+  opacity: 0.7,
 };

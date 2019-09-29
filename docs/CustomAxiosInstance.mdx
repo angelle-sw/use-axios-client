@@ -1,16 +1,16 @@
 ---
 name: Custom Axios Instance
-route: /custom-axios-instance
+route: /custom-axios-instance/
 parent: Advanced
 ---
 
 # Custom Axios Instance
 
-You can define a custom axios instance to be used for the request.
+You can define a custom [axios instance](https://github.com/axios/axios#creating-an-instance) to be used for a request.
 
 This is useful if your app needs to interact with multiple APIs, each having its own unique set of request options.
 
-## Usage
+## Example
 
 1. Define your axios instance ([see axios docs](https://github.com/axios/axios#creating-an-instance)):
 
@@ -26,7 +26,20 @@ const instance = axios.create({
 ```js
 const { data, error, loading } = useAxios({
   axiosInstance: instance,
+  url: '/animals/2',
 });
 ```
 
 All requests made will use the provided axios instance.
+
+If you need to use the same `instance` across requests that live in different components, create a module that exports the instance:
+
+```js
+// apiInstance.js
+const instance = axios.create({
+  baseURL: 'https://example/api',
+  authorization: 'Bearer YWxhZGRpbjpvcGVuc2VzYW1l',
+});
+
+export default instance;
+```

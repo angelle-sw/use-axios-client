@@ -1,3 +1,4 @@
+import { media } from '../../theme/breakpoints';
 import { centerAlign } from '../../utils/mixins';
 
 export const wrapper = {
@@ -9,8 +10,10 @@ export const wrapper = {
 export const innerContainer = {
   px: 5,
   py: '16px',
-  position: 'relative',
   justifyContent: 'space-between',
+  [media.tablet]: {
+    pr: '20px',
+  },
 };
 
 export const headerButton = {
@@ -26,15 +29,4 @@ export const headerButton = {
   ':hover': {
     cursor: 'pointer',
   },
-};
-
-export const editButton = {
-  position: 'absolute',
-  bottom: -40,
-  right: 30,
-  bg: 'transparent',
-  color: 'muted',
-  fontSize: 1,
-  textDecoration: 'none',
-  borderRadius: 'radius',
 };

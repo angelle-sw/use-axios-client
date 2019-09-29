@@ -1,6 +1,6 @@
 ---
 name: Cancelling Requests
-route: /cancelling-requests
+route: /cancelling-requests/
 parent: Advanced
 ---
 
@@ -8,9 +8,14 @@ parent: Advanced
 
 You can use the `cancel` function provided by the hook to cancel an in-flight request.
 
+Common use cases:
+
+- Allow the user to cancel a request
+- Cancel a pending request when a new request is triggered
+
 _Note: Requests are automatically cancelled when a component hosting a hook is unmounted._
 
-## Usage
+## Example
 
 ```jsx
 import { useLazyAxios } from 'use-axios-client';

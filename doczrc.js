@@ -123,6 +123,7 @@ module.exports = {
       pre: {
         marginTop: 0,
         fontSize: 16,
+        overflowX: 'scroll',
       },
       code: {
         fontSize: 10,

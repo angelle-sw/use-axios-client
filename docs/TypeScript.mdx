@@ -1,14 +1,14 @@
 ---
 name: TypeScript
-route: /typescript
+route: /typescript/
 parent: Advanced
 ---
 
 # TypeScript
 
-You can use TypeScript to get full type safety in your components.
+You can use TypeScript to get full type safety in your components. `use-axios-client` ships type definitions, so there's no need to install any `@types` packages.
 
-## Usage
+## Example
 
 1. Define your data response shape:
 
@@ -27,7 +27,7 @@ const { data, error, loading } = useAxios<Data>({
 });
 ```
 
-This gives you full type safety in your components as you develop:
+3. Get type feedback as you develop:
 
 ```ts
 return <div>{data.location}</div>;
