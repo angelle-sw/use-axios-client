@@ -1,0 +1,21 @@
+{
+  "name": "use-axios-client-docs",
+  "version": "1.0.0",
+  "description": "Docs site for use-axios-client",
+  "scripts": {
+    "docs": "docz dev",
+    "docs:build": "docz build",
+    "docs:prepare": "yarn docs:build && cp -r src .docz && yarn docs:build"
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.17",
+    "docz": "^2.0.0-rc.47",
+    "gatsby": "^2.15.28",
+    "lodash": "^4.17.15",
+    "react": "^16.10.1",
+    "react-dom": "^16.10.1",
+    "react-feather": "^2.0.3",
+    "theme-ui": "^0.2.43"
+  },
+  "license": "MIT"
+}
