@@ -1,0 +1,34 @@
+---
+name: TypeScript
+route: /typescript
+---
+
+# TypeScript
+
+You can use TypeScript to get full type safety in your components.
+
+## Usage
+
+1. Define your data response shape:
+
+```ts
+interface Data {
+  name: string:
+  age: number;
+}
+```
+
+2. Pass it to a hook:
+
+```ts
+const { data, error, loading } = useAxios<Data>({
+  url: 'https://example/api',
+});
+```
+
+You'll now have full type safety in your components as you develop:
+
+```ts
+return <div>{data.location}</div>;
+// Property 'location' does not exist on type '{ name: string; age: number; }'
+```

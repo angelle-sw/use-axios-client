@@ -5,7 +5,11 @@ route: /use-axios
 
 # useAxios
 
-```js
+The `useAxios` hook can be used to make an axios request when your component renders. It provides a clean, simple API to allow you to configure and handle your request flow.
+
+## Usage
+
+```jsx
 import { useAxios } from 'use-axios-client';
 
 export default () => {
@@ -23,35 +27,24 @@ export default () => {
 };
 ```
 
-### with TypeScript
+## Request
 
-```ts
-import { useAxios } from 'use-axios-client';
+You can refer to the [Request Config](https://github.com/axios/axios#request-config) section of the axios documentation to see an exhaustive list of all request options.
 
-interface Data {
-  data: {
-    name: string;
-    color: string;
-  };
-}
+If needed, these additional options can be passed to the hook to configure your request.
 
-export default () => {
-  const { data, error, loading } = useAxios<Data>({
-    url: 'https://example/api',
-  });
+| Property        | Type            | Description                                                    |
+| --------------- | --------------- | -------------------------------------------------------------- |
+| `axiosInstance` | `AxiosInstance` | An optional axios instance to be used when making the request. |
 
-  return (
-    <>
-      {loading && <div>Loading...</div>}
-      {error && <div>{error.message}</div>}
-      {data && (
-        <div>
-          {data.data.name}
-          {': '}
-          {data.data.color}
-        </div>
-      )}
-    </>
-  );
-};
-```
+## Response
+
+These response values are returned by the `useAxios` hook, and can be used to handle each state of your request. It also provides several functions that allow you to interact with the request in an imperative way if needed.
+
+| Property  | Type                  | Description                                                  |
+| --------- | --------------------- | ------------------------------------------------------------ |
+| `data`    | `any`                 | The data response provided by the server.                    |
+| `error`   | `Error` &#x7c; `null` | An error message when a response is non-2xx.                 |
+| `loading` | `boolean`             | The loading state of the request.                            |
+| `cancel`  | `Function`            | A function that can be called to cancel an inflight request. |
+| `refetch` | `Function`            | A function that can be called to trigger a new request.      |

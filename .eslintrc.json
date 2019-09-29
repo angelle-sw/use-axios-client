@@ -22,12 +22,13 @@
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": ["**/webpack.config.js", "**/*.test.ts"]
+        "devDependencies": ["**/webpack.config.js", "**/*.test.ts", "src/gatsby-theme-docz/**/*.js"]
       }
     ],
-    "import/no-unresolved": "warn",
+    "import/prefer-default-export": "off",
     "prettier/prettier": "error",
     "react/jsx-filename-extension": "off",
+    "react/jsx-props-no-spreading": "off",
     "react/prop-types": "off"
   },
   "settings": {

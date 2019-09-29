@@ -5,7 +5,11 @@ route: /use-lazy-axios
 
 # useLazyAxios
 
-```js
+Sometimes you don't want to trigger a request as soon as your component renders. The `useLazyAxios` hook can be used to make an axios request imperatively at any time. This is useful for scenarios like triggering requests when a user submits a form or changes filter options.
+
+## Usage
+
+```jsx
 import { useLazyAxios } from 'use-axios-client';
 
 export default () => {
@@ -24,30 +28,25 @@ export default () => {
 };
 ```
 
-### with TypeScript
+## Request
 
-```ts
-import { useLazyAxios } from 'use-axios-client';
+You can refer to the [Request Config](https://github.com/axios/axios#request-config) section of the axios documentation to see an exhaustive list of all request options.
 
-interface Data {
-  data: {
-    name: string;
-    color: string;
-  };
-}
+If needed, these additional options can be passed to the hook to configure your request.
 
-export default () => {
-  const [getData, { data, error, loading }] = useLazyAxios<Data>({
-    url: 'https://example/api',
-  });
+| Property        | Type            | Description                                                    |
+| --------------- | --------------- | -------------------------------------------------------------- |
+| `axiosInstance` | `AxiosInstance` | An optional axios instance to be used when making the request. |
 
-  return (
-    <>
-      {loading && <div>Loading...</div>}
-      {error && <div>{error.message}</div>}
-      {data && <div>{data}</div>}
-      <button onClick={getData}>get data</button>
-    </>
-  );
-};
-```
+## Response
+
+These response values are returned by the `useLazyAxios` hook, and can be used to handle each state of your request. It also provides several functions that allow you to interact with the request in an imperative way if needed.
+
+| Property  | Type                  | Description                                                  |
+| --------- | --------------------- | ------------------------------------------------------------ |
+| `getData` | `Function`            | A function that can be called to trigger a request.          |
+| `data`    | `any`                 | The data response provided by the server.                    |
+| `error`   | `Error` &#x7c; `null` | An error message when a response is non-2xx.                 |
+| `loading` | `boolean`             | The loading state of the request.                            |
+| `cancel`  | `Function`            | A function that can be called to cancel an inflight request. |
+| `refetch` | `Function`            | A function that can be called to trigger a new request.      |
