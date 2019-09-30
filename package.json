@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Make axios requests in React using hooks.",
   "sideEffects": false,
-  "main": "bin/index.min.js",
+  "main": "bin/index.js",
   "types": "bin/index.d.ts",
   "scripts": {
     "build": "webpack --config webpack.config.js",
