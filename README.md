@@ -1,23 +1,22 @@
-<div align="center">
-<h1>use-axios-client</h1>
+<br />
 
-<a href="https://www.emojione.com/emoji/1f3a3">
+<div align="center">
+<a href="https://use-axios-client.io">
   <img
-    height="80"
-    width="80"
-    alt="hook"
-    src="https://i.imgur.com/0w5pOpf.png"
+    width="353"
+    alt="use-axios-client"
+    src="https://www.dropbox.com/s/spy5oz3qz98pzza/use-axios-client.png?raw=1"
   />
 </a>
 
+<br />
+<br />
+
 <p>Make axios requests in React using hooks.</p>
 
-[Docs](https://use-axios-client.io/)
+[![CircleCI](https://circleci.com/gh/angelle-sw/use-axios-client.svg?style=shield)](https://circleci.com/gh/angelle-sw/use-axios-client) [![codecov](https://codecov.io/gh/angelle-sw/use-axios-client/branch/master/graph/badge.svg)](https://codecov.io/gh/angelle-sw/use-axios-client) [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 
 </div>
-<hr />
-
-[![CircleCI](https://circleci.com/gh/angelle-sw/use-axios-client.svg?style=shield)](https://circleci.com/gh/angelle-sw/use-axios-client) [![codecov](https://codecov.io/gh/angelle-sw/use-axios-client/branch/master/graph/badge.svg)](https://codecov.io/gh/angelle-sw/use-axios-client) [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 
 ## Installation
 
@@ -33,9 +32,7 @@ with yarn:
 $ yarn add use-axios-client
 ```
 
-## Usage
-
-### `useAxios`
+## Example
 
 ```js
 import { useAxios } from 'use-axios-client';
@@ -55,61 +52,20 @@ export default () => {
 };
 ```
 
-### `useLazyAxios`
+## Docs
 
-```js
-import { useLazyAxios } from 'use-axios-client';
-
-export default () => {
-  const [getData, { data, error, loading }] = useLazyAxios({
-    url: 'https://example/api',
-  });
-
-  return (
-    <>
-      {loading && <div>Loading...</div>}
-      {error && <div>{error.message}</div>}
-      {data && <div>{data}</div>}
-      <button onClick={getData}>get data</button>
-    </>
-  );
-};
-```
-
-### with TypeScript
-
-```ts
-import { useAxios } from 'use-axios-client';
-
-interface Data {
-  data: {
-    name: string;
-    color: string;
-  };
-}
-
-export default () => {
-  const { data, error, loading } = useAxios<Data>({
-    url: 'https://example/api',
-  });
-
-  return (
-    <>
-      {loading && <div>Loading...</div>}
-      {error && <div>{error.message}</div>}
-      {data && (
-        <div>
-          {data.data.name}
-          {': '}
-          {data.data.color}
-        </div>
-      )}
-    </>
-  );
-};
-```
+- [Getting Started](https://use-axios-client.io/)
+- [useAxios](https://use-axios-client.io/use-axios)
+- [useLazyAxios](https://use-axios-client.io/use-lazy-axios)
+- [TypeScript](https://use-axios-client.io/typescript)
 
 ## Contributing
+
+Clone the repository:
+
+```sh
+$ git clone https://github.com/angelle-sw/use-axios-client
+```
 
 Install dependencies:
 
@@ -130,7 +86,3 @@ Run tests using [jest](https://github.com/facebook/jest):
 ```sh
 $ yarn test
 ```
-
-## License
-
-MIT
