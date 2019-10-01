@@ -17,5 +17,8 @@
     "react-feather": "^2.0.3",
     "theme-ui": "^0.2.43"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "react-helmet": "^5.2.1"
+  }
 }
