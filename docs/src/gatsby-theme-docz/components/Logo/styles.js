@@ -1,9 +1,8 @@
 import { media } from '../../theme/breakpoints';
 
 export const logo = {
-  fontSize: '22px',
-  color: '#fff',
-  lineHeight: '39px',
+  marginTop: '5px',
+  width: '180px',
   letterSpacing: '-1px',
   [media.tablet]: {
     marginLeft: '10px',
