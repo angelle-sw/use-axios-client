@@ -19,6 +19,7 @@ module.exports = {
   output: {
     path: `${__dirname}/bin`,
     filename: 'index.js',
+    library: 'use-axios-client',
     libraryTarget: 'commonjs',
     globalObject: "typeof self !== 'undefined' ? self : this",
   },
