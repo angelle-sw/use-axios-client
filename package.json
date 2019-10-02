@@ -27,7 +27,8 @@
   },
   "homepage": "https://github.com/angelle-sw/use-axios-client#readme",
   "dependencies": {
-    "axios": "^0.19.0"
+    "axios": "^0.19.0",
+    "eslint-import-resolver-webpack": "^0.11.1"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
