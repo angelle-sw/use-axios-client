@@ -41,6 +41,7 @@
   "settings": {
     "import/resolver": {
       "node": {
+        "paths": ["src", "example", "docs"],
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     }
