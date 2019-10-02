@@ -6,7 +6,7 @@
   "scripts": {
     "start": "yarn prepare-lib && webpack-dev-server --open --mode development",
     "build": "yarn prepare-lib && webpack --mode production",
-    "lint": "eslint src/**/*.tsx webpack.config.js",
+    "lint": "eslint src webpack.config.js babel.config.js --ext js,jsx,ts,tsx",
     "prepare-lib": "cd .. && yarn prepare && cd example"
   },
   "author": "JP Angelle, Zak Angelle",
@@ -19,7 +19,7 @@
     "@babel/preset-typescript": "^7.3.3",
     "@types/reach__router": "^1.2.5",
     "babel-loader": "^8.0.6",
-    "eslint": "^6.4.0",
+    "eslint": "^6.5.1",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "webpack": "^4.39.2",
