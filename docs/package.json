@@ -15,10 +15,8 @@
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
     "react-feather": "^2.0.3",
+    "react-helmet": "^5.2.1",
     "theme-ui": "^0.2.43"
   },
-  "license": "MIT",
-  "devDependencies": {
-    "react-helmet": "^5.2.1"
-  }
+  "license": "MIT"
 }
