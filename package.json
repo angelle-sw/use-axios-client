@@ -25,7 +25,14 @@
   "bugs": {
     "url": "https://github.com/angelle-sw/use-axios-client/issues"
   },
-  "homepage": "https://github.com/angelle-sw/use-axios-client#readme",
+  "homepage": "https://use-axios-client.io",
+  "keywords": [
+    "react",
+    "axios",
+    "hooks",
+    "xhr",
+    "http"
+  ],
   "dependencies": {
     "axios": "^0.19.0"
   },
