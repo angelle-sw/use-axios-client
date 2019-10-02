@@ -39,7 +39,14 @@
     "@typescript-eslint/explicit-function-return-type": "off"
   },
   "settings": {
-    "import/resolver": ["node", "webpack"]
+    "import/resolver": {
+      "node": {
+        "paths": ["webpack.config.js"]
+      },
+      "webpack": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
   },
   "overrides": [
     {
