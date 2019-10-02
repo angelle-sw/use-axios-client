@@ -5,7 +5,12 @@
     "jest": true
   },
   "parser": "@typescript-eslint/parser",
-  "extends": ["airbnb", "prettier"],
+  "extends": [
+    "airbnb",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "prettier/@typescript-eslint"
+  ],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -22,11 +27,7 @@
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": [
-          "**/webpack.config.js",
-          "**/*.test.ts",
-          "**/src/gatsby-theme-docz/**/*.js"
-        ]
+        "devDependencies": ["**/webpack.config.js", "**/*.test.ts"]
       }
     ],
     "import/prefer-default-export": "off",
@@ -34,7 +35,8 @@
     "prettier/prettier": "error",
     "react/jsx-filename-extension": "off",
     "react/jsx-props-no-spreading": "off",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "@typescript-eslint/explicit-function-return-type": "off"
   },
   "settings": {
     "import/resolver": {
@@ -45,10 +47,9 @@
   },
   "overrides": [
     {
-      "files": ["*.ts", "*.tsx"],
-      "extends": ["plugin:@typescript-eslint/recommended"],
+      "files": ["webpack.config.js"],
       "rules": {
-        "@typescript-eslint/explicit-function-return-type": "off"
+        "@typescript-eslint/no-var-requires": "off"
       }
     }
   ]

@@ -12,3 +12,9 @@ jobs:
       - run: yarn test --coverage --watchAll=false
       - codecov/upload:
           file: coverage/*.json
+      - run: cd example
+      - run: yarn
+      - run: yarn lint
+      - run: cd docs
+      - run: yarn
+      - run: yarn lint

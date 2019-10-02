@@ -5,7 +5,8 @@
   "scripts": {
     "docs": "docz dev",
     "docs:build": "docz build",
-    "docs:prepare": "yarn docs:build && cp -r src .docz && yarn docs:build"
+    "docs:prepare": "yarn docs:build && cp -r src .docz && yarn docs:build",
+    "lint": "eslint src doczrc.js --ext js,jsx,ts,tsx"
   },
   "dependencies": {
     "@emotion/core": "^10.0.17",
@@ -15,10 +16,11 @@
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
     "react-feather": "^2.0.3",
+    "react-helmet": "^5.2.1",
     "theme-ui": "^0.2.43"
   },
-  "license": "MIT",
   "devDependencies": {
-    "react-helmet": "^5.2.1"
-  }
+    "eslint": "^6.5.1"
+  },
+  "license": "MIT"
 }
