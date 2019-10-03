@@ -1,7 +1,7 @@
 {
   "name": "use-axios-client-docs",
   "version": "1.0.0",
-  "description": "Docs site for use-axios-client",
+  "description": "Make axios requests in React using hooks.",
   "scripts": {
     "docs": "docz dev",
     "docs:build": "docz build",
