@@ -9,7 +9,7 @@ Contributing to `use-axios-client` isn't limited to just filing bugs. Users are 
 - [Git](https://git-scm.com/)
 - Latest version of [NodeJS](https://nodejs.org/en/)
 
-### Getting use-axios-client
+### Setup
 
 Clone the repository:
 
@@ -17,24 +17,24 @@ Clone the repository:
 $ git clone https://github.com/angelle-sw/use-axios-client
 ```
 
-Install library dependencies:
+Install dependencies:
 
-```
+```sh
 $ yarn
 ```
 
-Run tests (implicitly re-runs on code changes):
+Run the example app at [http://localhost:8080](http://localhost:8080):
 
-```
-$ yarn test
-```
-
-Boot up the example app at [http://localhost:8080](http://localhost:8080) (implicitly rebuilds on code changes):
-
-```
+```sh
 $ cd example
 $ yarn
 $ yarn start
+```
+
+Run tests using [jest](https://github.com/facebook/jest):
+
+```sh
+$ yarn test
 ```
 
 ### Using branches

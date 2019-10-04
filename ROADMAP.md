@@ -70,3 +70,24 @@ const { data, error, loading } = useAxios({
 ## Server-side rendering
 
 ## Suspense
+
+See [initial draft PR](https://github.com/angelle-sw/use-axios-client/pull/17).
+
+```js
+import { useAxios } from 'use-axios-client';
+
+const Child = () => {
+  const { data } = useAxios({
+    url: 'https://example/api',
+    suspense: true,
+  });
+
+  return <div>{data}</div>;
+};
+
+const Parent = () => (
+  <React.Suspense fallback="Loading...">
+    <Child />
+  </React.Suspense>
+);
+```
