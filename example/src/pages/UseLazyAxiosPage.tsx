@@ -4,6 +4,7 @@ import { RouteComponentProps } from '@reach/router';
 import {
   UseLazyAxiosBasic,
   UseLazyAxiosCancel,
+  UseLazyAxiosEffectDependency,
   UseLazyAxiosPostData,
   UseLazyAxiosRetry,
   UseLazyAxiosUnmount,
@@ -13,6 +14,7 @@ const UseLazyAxiosPage: React.FC<RouteComponentProps> = () => (
   <Flex wrap="wrap">
     <UseLazyAxiosBasic />
     <UseLazyAxiosCancel />
+    <UseLazyAxiosEffectDependency />
     <UseLazyAxiosPostData />
     <UseLazyAxiosRetry />
     <UseLazyAxiosUnmount />
