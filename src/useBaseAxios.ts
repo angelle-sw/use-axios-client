@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios';
 import useAxiosReducer, { RequestState } from './useAxiosReducer';
 import useAxiosCancel from './useAxiosCancel';
@@ -47,21 +47,24 @@ function useBaseAxios<Data>(param1: string | Config, param2: Config = {}) {
 
   const invokeAxios = createAxiosInvoker();
 
-  const getData = async (lazyData: Config['data']) => {
-    dispatch({ type: 'REQUEST_INIT' });
+  const getData = useCallback(
+    async (lazyData: Config['data']) => {
+      dispatch({ type: 'REQUEST_INIT' });
 
-    try {
-      const res = (await invokeAxios(lazyData)) as AxiosResponse<Data>;
+      try {
+        const res = (await invokeAxios(lazyData)) as AxiosResponse<Data>;
 
-      if (isMounted.current) {
-        dispatch({ type: 'REQUEST_SUCCESS', payload: res.data });
+        if (isMounted.current) {
+          dispatch({ type: 'REQUEST_SUCCESS', payload: res.data });
+        }
+      } catch (e) {
+        if (isMounted.current) {
+          dispatch({ type: 'REQUEST_FAILED', payload: e });
+        }
       }
-    } catch (e) {
-      if (isMounted.current) {
-        dispatch({ type: 'REQUEST_FAILED', payload: e });
-      }
-    }
-  };
+    },
+    [cancelToken, `${JSON.stringify(param1)}.${JSON.stringify(param2)}`]
+  );
 
   useEffect(() => {
     return () => {
