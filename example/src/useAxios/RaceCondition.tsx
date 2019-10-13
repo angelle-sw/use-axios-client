@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from '../Container';
 import Heading from '../Heading';
 import TextBlock from '../TextBlock';
@@ -23,10 +23,10 @@ export default () => {
     `http://slowwly.robertomurray.co.uk/delay/${delay}/url/https://reqres.in/api/things/${thing}`
   );
 
-  setTimeout(() => {
+  useEffect(() => {
     setDelay(1000);
     setThing(colors.FUCHSIA);
-  });
+  }, []);
 
   return (
     <Container>
