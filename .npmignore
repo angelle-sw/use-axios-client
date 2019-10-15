@@ -6,7 +6,6 @@
 .gitignore
 .prettierrc.js
 babel.config.js
-bin
 CONTRIBUTING.md
 coverage
 docs
