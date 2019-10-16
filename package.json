@@ -33,9 +33,6 @@
     "xhr",
     "http"
   ],
-  "dependencies": {
-    "axios": "^0.19.0"
-  },
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/plugin-transform-runtime": "^7.5.5",
@@ -51,6 +48,7 @@
     "@types/react-dom": "^16.9.0",
     "@typescript-eslint/eslint-plugin": "^2.0.0",
     "@typescript-eslint/parser": "^2.0.0",
+    "axios": "^0.19.0",
     "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.6",
     "eslint": "^6.5.1",
@@ -74,6 +72,7 @@
     "webpack-cli": "^3.3.6"
   },
   "peerDependencies": {
+    "axios": "^0.19.0",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
   },
