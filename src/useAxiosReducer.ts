@@ -1,9 +1,9 @@
 import { useReducer } from 'react';
 
 export interface RequestState<Data> {
-  data: Data | null;
+  data: Data | undefined;
   loading: boolean;
-  error: Error | null;
+  error: Error | undefined;
 }
 
 type Action<Data> =
@@ -12,8 +12,8 @@ type Action<Data> =
   | { type: 'REQUEST_FAILED'; payload: Error };
 
 export const initialState = {
-  data: null,
-  error: null,
+  data: undefined,
+  error: undefined,
   loading: false,
 };
 
@@ -27,14 +27,14 @@ const createReducer = <Data>() => (
     case 'REQUEST_INIT':
       return {
         ...state,
-        error: null,
+        error: undefined,
         loading: true,
       };
     case 'REQUEST_SUCCESS':
       return {
         ...state,
         data: action.payload,
-        error: null,
+        error: undefined,
         loading: false,
       };
     case 'REQUEST_FAILED':
