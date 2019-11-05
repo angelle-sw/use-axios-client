@@ -18,7 +18,7 @@ export default () => {
 
   return (
     <Container>
-      <Heading>useAxios</Heading>
+      <Heading>useAxios with Default Parameters</Heading>
 
       <TextBlock>
         {loading && 'Loading...'}
