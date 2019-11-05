@@ -11,25 +11,35 @@ interface Data {
   };
 }
 
-export default () => {
+function BaseDefaultParameter() {
   const { data = { data: { name: 'salmon', color: '#FA8072' } }, error, loading } = useAxios<Data>(
     'https://reqres.in/api/bad/request'
   );
 
+  if (data && !loading) {
+    return (
+      <div>
+        {data.data.name}
+        {': '}
+        {data.data.color}
+      </div>
+    );
+  }
+
+  if (loading) {
+    return <>Loading...</>;
+  }
+
+  return <>{error && error.message}</>;
+}
+
+export default () => {
   return (
     <Container>
       <Heading>useAxios with Default Parameters</Heading>
 
       <TextBlock>
-        {loading && 'Loading...'}
-        {error && !data && error.message}
-        {data && !loading && (
-          <div>
-            {data.data.name}
-            {': '}
-            {data.data.color}
-          </div>
-        )}
+        <BaseDefaultParameter />
       </TextBlock>
     </Container>
   );
