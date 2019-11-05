@@ -38,8 +38,8 @@ test('should load while axios request is pending', async () => {
 
   const { data, error, loading } = result.current[1];
 
-  expect(data).toBe(null);
-  expect(error).toBe(null);
+  expect(data).toBeUndefined();
+  expect(error).toBeUndefined();
   expect(loading).toBe(true);
 
   await waitForNextUpdate();
@@ -66,7 +66,7 @@ test('should return data when axios request resolves', async () => {
   const { data, error, loading } = result.current[1];
 
   expect(data).toEqual({});
-  expect(error).toBe(null);
+  expect(error).toBeUndefined();
   expect(loading).toBe(false);
 });
 
@@ -90,7 +90,7 @@ test('should return data when axios request resolves with url signature', async 
   const { data, error, loading } = result.current[1];
 
   expect(data).toEqual({});
-  expect(error).toBe(null);
+  expect(error).toBeUndefined();
   expect(loading).toBe(false);
 });
 
@@ -115,7 +115,7 @@ test('should return error when axios request rejects', async () => {
 
   const { data, error, loading } = result.current[1];
 
-  expect(data).toBe(null);
+  expect(data).toBeUndefined();
   expect(error).toBe(errorResponse);
   expect(loading).toBe(false);
 });
@@ -150,8 +150,8 @@ test('request is cancelled on unmount', () => {
   const { data, error, loading } = result.current[1];
 
   expect(cancel).toHaveBeenCalled();
-  expect(data).toBe(null);
-  expect(error).toBe(null);
+  expect(data).toBeUndefined();
+  expect(error).toBeUndefined();
   expect(loading).toBe(true);
 });
 

@@ -46,7 +46,7 @@ test('should return data state when axios request resolves', async () => {
 
   expect(cancel).toBeInstanceOf(Function);
   expect(data).toBe(data);
-  expect(error).toBe(null);
+  expect(error).toBeUndefined();
   expect(loading).toBe(false);
   expect(refetch).toBeInstanceOf(Function);
 });
@@ -76,7 +76,7 @@ test('should return data state when axios request resolves using url signature',
 
   expect(cancel).toBeInstanceOf(Function);
   expect(data).toBe(responseData);
-  expect(error).toBe(null);
+  expect(error).toBeUndefined();
   expect(loading).toBe(false);
   expect(refetch).toBeInstanceOf(Function);
 });
@@ -106,7 +106,7 @@ test('should return error state when axios request rejects', async () => {
   const { cancel, data, error, loading, refetch } = result.current[1];
 
   expect(cancel).toBeInstanceOf(Function);
-  expect(data).toBe(null);
+  expect(data).toBeUndefined();
   expect(error).toBe(responseError);
   expect(loading).toBe(false);
   expect(refetch).toBeInstanceOf(Function);
@@ -135,7 +135,7 @@ test('should return error state when axios request rejects using url signature',
   const { cancel, data, error, loading, refetch } = result.current[1];
 
   expect(cancel).toBeInstanceOf(Function);
-  expect(data).toBe(null);
+  expect(data).toBeUndefined();
   expect(error).toBe(responseError);
   expect(loading).toBe(false);
   expect(refetch).toBeInstanceOf(Function);
@@ -164,7 +164,7 @@ test('should return data state when refetch resolves', async () => {
   await waitForNextUpdate();
 
   expect(result.current[1].cancel).toBeInstanceOf(Function);
-  expect(result.current[1].data).toBe(null);
+  expect(result.current[1].data).toBeUndefined();
   expect(result.current[1].error).toBe(error);
   expect(result.current[1].loading).toBe(false);
   expect(result.current[1].refetch).toBeInstanceOf(Function);
@@ -177,7 +177,7 @@ test('should return data state when refetch resolves', async () => {
 
   expect(result.current[1].cancel).toBeInstanceOf(Function);
   expect(result.current[1].data).toBe(data);
-  expect(result.current[1].error).toBe(null);
+  expect(result.current[1].error).toBeUndefined();
   expect(result.current[1].loading).toBe(false);
   expect(result.current[1].refetch).toBeInstanceOf(Function);
 });

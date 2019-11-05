@@ -8,6 +8,7 @@ import {
   UseAxiosRetry,
   UseAxiosCustomInstance,
   UseAxiosRaceCondition,
+  UseAxiosDefaultParameter,
 } from '../useAxios';
 
 const UseAxiosPage: React.FC<RouteComponentProps> = () => (
@@ -18,6 +19,7 @@ const UseAxiosPage: React.FC<RouteComponentProps> = () => (
     <UseAxiosRetry />
     <UseAxiosCustomInstance />
     <UseAxiosRaceCondition />
+    <UseAxiosDefaultParameter />
   </Flex>
 );
 

@@ -42,7 +42,7 @@ test('should return data state when axios request resolves', async () => {
 
   expect(cancel).toBeInstanceOf(Function);
   expect(data).toBe(responseData);
-  expect(error).toBe(null);
+  expect(error).toBeUndefined();
   expect(loading).toBe(false);
   expect(refetch).toBeInstanceOf(Function);
 });
@@ -66,7 +66,7 @@ test('should return data state when axios request resolves using url signature',
 
   expect(cancel).toBeInstanceOf(Function);
   expect(data).toBe(responseData);
-  expect(error).toBe(null);
+  expect(error).toBeUndefined();
   expect(loading).toBe(false);
   expect(refetch).toBeInstanceOf(Function);
 });
@@ -90,7 +90,7 @@ test('should return error state when axios request rejects', async () => {
   const { cancel, data, error, loading, refetch } = result.current;
 
   expect(cancel).toBeInstanceOf(Function);
-  expect(data).toBe(null);
+  expect(data).toBeUndefined();
   expect(error).toBe(responseError);
   expect(loading).toBe(false);
   expect(refetch).toBeInstanceOf(Function);
@@ -114,7 +114,7 @@ test('should return error state when axios request rejects using url signature',
   const { cancel, data, error, loading, refetch } = result.current;
 
   expect(cancel).toBeInstanceOf(Function);
-  expect(data).toBe(null);
+  expect(data).toBeUndefined();
   expect(error).toBe(responseError);
   expect(loading).toBe(false);
   expect(refetch).toBeInstanceOf(Function);
@@ -137,7 +137,7 @@ test('should return data state when refetch resolves', async () => {
   await waitForNextUpdate();
 
   expect(result.current.cancel).toBeInstanceOf(Function);
-  expect(result.current.data).toBe(null);
+  expect(result.current.data).toBeUndefined();
   expect(result.current.error).toBe(error);
   expect(result.current.loading).toBe(false);
   expect(result.current.refetch).toBeInstanceOf(Function);
@@ -150,7 +150,7 @@ test('should return data state when refetch resolves', async () => {
 
   expect(result.current.cancel).toBeInstanceOf(Function);
   expect(result.current.data).toBe(data);
-  expect(result.current.error).toBe(null);
+  expect(result.current.error).toBeUndefined();
   expect(result.current.loading).toBe(false);
   expect(result.current.refetch).toBeInstanceOf(Function);
 });
@@ -183,7 +183,7 @@ test('should return updated state when axios config changes', async () => {
 
   expect(result.current.cancel).toBeInstanceOf(Function);
   expect(result.current.data).toBe(data1);
-  expect(result.current.error).toBe(null);
+  expect(result.current.error).toBeUndefined();
   expect(result.current.loading).toBe(false);
   expect(result.current.refetch).toBeInstanceOf(Function);
 
@@ -195,7 +195,7 @@ test('should return updated state when axios config changes', async () => {
 
   expect(result.current.cancel).toBeInstanceOf(Function);
   expect(result.current.data).toBe(data2);
-  expect(result.current.error).toBe(null);
+  expect(result.current.error).toBeUndefined();
   expect(result.current.loading).toBe(false);
   expect(result.current.refetch).toBeInstanceOf(Function);
 });
