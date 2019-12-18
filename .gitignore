@@ -1,5 +1,5 @@
 node_modules
-bin
+pkg
 .gitconfig
 .docz
 coverage
