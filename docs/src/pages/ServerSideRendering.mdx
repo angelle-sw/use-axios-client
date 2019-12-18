@@ -1,0 +1,23 @@
+---
+name: Server-Side Rendering
+route: /server-side-rendering/
+parent: Advanced
+---
+
+# Server-Side Rendering
+
+If you're using SSR, you can pass in data fetched on the server to initialize the client by using the `ssrData` option.
+
+## Example
+
+```js
+const { data, error, loading } = useAxios({
+  ssrData: [
+    {
+      id: '55b797ca21414b0cbad9847ebe6f3d64',
+      name: 'Avril Lavigne',
+    },
+  ],
+  url: '/rockstars/2',
+});
+```

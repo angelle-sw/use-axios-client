@@ -66,3 +66,15 @@ test('sets data and error to default parameter', () => {
   expect(error).toEqual([]);
   expect(loading).toBe(true);
 });
+
+test('sets data to provided SSR data', () => {
+  const ssrData = '🎸 avril lavigne 🎸';
+
+  const { result } = renderHook(() => useAxiosReducer(ssrData));
+
+  const { data, error, loading } = result.current[0];
+
+  expect(data).toEqual(ssrData);
+  expect(error).toEqual(undefined);
+  expect(loading).toBe(false);
+});

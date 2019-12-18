@@ -14,6 +14,8 @@ const mockedAxios = axios as AxiosMock;
 const { CancelToken } = axios;
 
 beforeEach(() => {
+  jest.resetAllMocks();
+
   CancelToken.source = jest.fn().mockImplementation(() => ({
     cancel: jest.fn(),
     token: 'abc',
@@ -34,10 +36,13 @@ test('should return data state when axios request resolves', async () => {
 
   const getData = result.current[0];
 
+  expect(jest.requireMock('axios').mock.calls.length).toBe(0);
+
   act(() => {
     getData();
   });
 
+  expect(jest.requireMock('axios').mock.calls.length).toBe(1);
   expect(result.current[1].loading).toBe(true);
 
   await waitForNextUpdate();
@@ -46,6 +51,28 @@ test('should return data state when axios request resolves', async () => {
 
   expect(cancel).toBeInstanceOf(Function);
   expect(data).toBe(data);
+  expect(error).toBeUndefined();
+  expect(loading).toBe(false);
+  expect(refetch).toBeInstanceOf(Function);
+});
+
+test('should support SSR passing in initial data', async () => {
+  const ssrData = '🎸 avril lavigne 🎸';
+
+  const { result } = renderHook(() =>
+    useLazyAxios({
+      ssrData,
+      method: 'get',
+      url: '/test',
+    })
+  );
+
+  expect(jest.requireMock('axios').mock.calls.length).toBe(0);
+
+  const { cancel, data, error, loading, refetch } = result.current[1];
+
+  expect(cancel).toBeInstanceOf(Function);
+  expect(data).toBe(ssrData);
   expect(error).toBeUndefined();
   expect(loading).toBe(false);
   expect(refetch).toBeInstanceOf(Function);
@@ -64,10 +91,13 @@ test('should return data state when axios request resolves using url signature',
 
   const getData = result.current[0];
 
+  expect(jest.requireMock('axios').mock.calls.length).toBe(0);
+
   act(() => {
     getData();
   });
 
+  expect(jest.requireMock('axios').mock.calls.length).toBe(1);
   expect(result.current[1].loading).toBe(true);
 
   await waitForNextUpdate();
@@ -95,10 +125,13 @@ test('should return error state when axios request rejects', async () => {
 
   const getData = result.current[0];
 
+  expect(jest.requireMock('axios').mock.calls.length).toBe(0);
+
   act(() => {
     getData();
   });
 
+  expect(jest.requireMock('axios').mock.calls.length).toBe(1);
   expect(result.current[1].loading).toBe(true);
 
   await waitForNextUpdate();
@@ -124,10 +157,13 @@ test('should return error state when axios request rejects using url signature',
 
   const getData = result.current[0];
 
+  expect(jest.requireMock('axios').mock.calls.length).toBe(0);
+
   act(() => {
     getData();
   });
 
+  expect(jest.requireMock('axios').mock.calls.length).toBe(1);
   expect(result.current[1].loading).toBe(true);
 
   await waitForNextUpdate();
@@ -155,10 +191,13 @@ test('should return data state when refetch resolves', async () => {
 
   const getData = result.current[0];
 
+  expect(jest.requireMock('axios').mock.calls.length).toBe(0);
+
   act(() => {
     getData();
   });
 
+  expect(jest.requireMock('axios').mock.calls.length).toBe(1);
   expect(result.current[1].loading).toBe(true);
 
   await waitForNextUpdate();
@@ -172,6 +211,9 @@ test('should return data state when refetch resolves', async () => {
   act(() => {
     result.current[1].refetch();
   });
+
+  expect(jest.requireMock('axios').mock.calls.length).toBe(2);
+  expect(result.current[1].loading).toBe(true);
 
   await waitForNextUpdate();
 

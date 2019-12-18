@@ -158,7 +158,7 @@ test('request is cancelled on unmount', () => {
 test('request data is passed via lazy callback', async () => {
   const color = 'fuschia';
 
-  mockedAxios.mockImplementation((config: Config) => {
+  mockedAxios.mockImplementation((config: Config<string>) => {
     if (config.data) {
       return Promise.resolve({ data: { color } });
     }
