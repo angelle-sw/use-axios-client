@@ -161,7 +161,7 @@ test('should return updated state when axios config changes', async () => {
   const url1 = '/test/1';
   const url2 = '/test/2';
 
-  mockedAxios.mockImplementation((config: Config) => {
+  mockedAxios.mockImplementation((config: Config<string>) => {
     if (config.url === url1) {
       return Promise.resolve({ data: data1 });
     }
