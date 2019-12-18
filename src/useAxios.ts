@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import useBaseAxios, { Props, Config } from './useBaseAxios';
 
 function useAxios<Data>(url: string): Props<Data>;
@@ -20,8 +20,14 @@ function useAxios<Data>(param1: string | Config<Data>, param2: Config<Data> = {}
 
   const [getData, dataStates] = invokeUseBaseAxios();
 
+  const justMounted = useRef(true);
+
   useEffect(() => {
-    getData();
+    if (typeof config.ssrData === 'undefined' || !justMounted.current) {
+      getData();
+    }
+
+    justMounted.current = false;
   }, [JSON.stringify(config)]);
 
   return dataStates;

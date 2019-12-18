@@ -11,11 +11,11 @@ type Action<Data> =
   | { type: 'REQUEST_SUCCESS'; payload: Data }
   | { type: 'REQUEST_FAILED'; payload: Error };
 
-export const initialState = {
-  data: undefined,
+export const createInitialState = <Data>(data?: Data) => ({
+  data: typeof data === 'undefined' ? undefined : data,
   error: undefined,
   loading: false,
-};
+});
 
 const createReducer = <Data>() => (
   state: RequestState<Data>,
@@ -46,4 +46,5 @@ const createReducer = <Data>() => (
   }
 };
 
-export default <Data>() => useReducer(createReducer<Data>(), initialState);
+export default <Data>(ssrData?: Data) =>
+  useReducer(createReducer<Data>(), createInitialState(ssrData));

@@ -21,7 +21,9 @@ function useBaseAxios<Data>(config: Config<Data>): BaseAxios<Data>;
 function useBaseAxios<Data>(url: string, config: Config<Data>): BaseAxios<Data>;
 function useBaseAxios<Data>(param1: string | Config<Data>, param2: Config<Data> = {}) {
   const isMounted = useRef(true);
-  const [{ data, error, loading }, dispatch] = useAxiosReducer<Data>();
+  const [{ data, error, loading }, dispatch] = useAxiosReducer<Data>(
+    typeof param1 === 'string' ? param2.ssrData : param1.ssrData
+  );
   const { cancel, cancelToken } = useAxiosCancel();
 
   const createAxiosInvoker = () => {
