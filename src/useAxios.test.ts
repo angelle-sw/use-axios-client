@@ -16,6 +16,8 @@ const mockedAxios = axios as AxiosMock;
 const { CancelToken } = axios;
 
 beforeEach(() => {
+  jest.resetAllMocks();
+
   CancelToken.source = jest.fn().mockImplementation(() => ({
     cancel: jest.fn(),
     token: 'abc',
@@ -27,6 +29,8 @@ test('should return data state when axios request resolves', async () => {
 
   mockedAxios.mockResolvedValue({ data: responseData });
 
+  expect(jest.requireMock('axios').mock.calls.length).toBe(0);
+
   const { result, waitForNextUpdate } = renderHook(() =>
     useAxios({
       method: 'get',
@@ -34,6 +38,7 @@ test('should return data state when axios request resolves', async () => {
     })
   );
 
+  expect(jest.requireMock('axios').mock.calls.length).toBe(1);
   expect(result.current.loading).toBe(true);
 
   await waitForNextUpdate();
@@ -47,10 +52,34 @@ test('should return data state when axios request resolves', async () => {
   expect(refetch).toBeInstanceOf(Function);
 });
 
+test('should support SSR passing in initial data', async () => {
+  const ssrData = '🎸 avril lavigne 🎸';
+
+  const { result } = renderHook(() =>
+    useAxios({
+      ssrData,
+      method: 'get',
+      url: '/test',
+    })
+  );
+
+  expect(jest.requireMock('axios').mock.calls.length).toBe(0);
+
+  const { cancel, data, error, loading, refetch } = result.current;
+
+  expect(cancel).toBeInstanceOf(Function);
+  expect(data).toBe(ssrData);
+  expect(error).toBeUndefined();
+  expect(loading).toBe(false);
+  expect(refetch).toBeInstanceOf(Function);
+});
+
 test('should return data state when axios request resolves using url signature', async () => {
   const responseData = 'fuschia';
 
   mockedAxios.mockResolvedValue({ data: responseData });
+
+  expect(jest.requireMock('axios').mock.calls.length).toBe(0);
 
   const { result, waitForNextUpdate } = renderHook(() =>
     useAxios('/test', {
@@ -58,6 +87,7 @@ test('should return data state when axios request resolves using url signature',
     })
   );
 
+  expect(jest.requireMock('axios').mock.calls.length).toBe(1);
   expect(result.current.loading).toBe(true);
 
   await waitForNextUpdate();
@@ -76,6 +106,8 @@ test('should return error state when axios request rejects', async () => {
 
   mockedAxios.mockRejectedValue(responseError);
 
+  expect(jest.requireMock('axios').mock.calls.length).toBe(0);
+
   const { result, waitForNextUpdate } = renderHook(() =>
     useAxios({
       method: 'get',
@@ -83,6 +115,7 @@ test('should return error state when axios request rejects', async () => {
     })
   );
 
+  expect(jest.requireMock('axios').mock.calls.length).toBe(1);
   expect(result.current.loading).toBe(true);
 
   await waitForNextUpdate();
@@ -101,12 +134,15 @@ test('should return error state when axios request rejects using url signature',
 
   mockedAxios.mockRejectedValue(responseError);
 
+  expect(jest.requireMock('axios').mock.calls.length).toBe(0);
+
   const { result, waitForNextUpdate } = renderHook(() =>
     useAxios('/test', {
       method: 'get',
     })
   );
 
+  expect(jest.requireMock('axios').mock.calls.length).toBe(1);
   expect(result.current.loading).toBe(true);
 
   await waitForNextUpdate();
@@ -126,12 +162,15 @@ test('should return data state when refetch resolves', async () => {
 
   mockedAxios.mockRejectedValueOnce(error).mockResolvedValue({ data });
 
+  expect(jest.requireMock('axios').mock.calls.length).toBe(0);
+
   const { result, waitForNextUpdate } = renderHook(() =>
     useAxios('/test', {
       method: 'get',
     })
   );
 
+  expect(jest.requireMock('axios').mock.calls.length).toBe(1);
   expect(result.current.loading).toBe(true);
 
   await waitForNextUpdate();
@@ -145,6 +184,9 @@ test('should return data state when refetch resolves', async () => {
   act(() => {
     result.current.refetch();
   });
+
+  expect(jest.requireMock('axios').mock.calls.length).toBe(2);
+  expect(result.current.loading).toBe(true);
 
   await waitForNextUpdate();
 
@@ -168,6 +210,8 @@ test('should return updated state when axios config changes', async () => {
     return Promise.resolve({ data: data2 });
   });
 
+  expect(jest.requireMock('axios').mock.calls.length).toBe(0);
+
   const { rerender, result, waitForNextUpdate } = renderHook(
     ({ url }) =>
       useAxios({
@@ -177,6 +221,7 @@ test('should return updated state when axios config changes', async () => {
     { initialProps: { url: url1 } }
   );
 
+  expect(jest.requireMock('axios').mock.calls.length).toBe(1);
   expect(result.current.loading).toBe(true);
 
   await waitForNextUpdate();
