@@ -3,3 +3,4 @@ bin
 .gitconfig
 .docz
 coverage
+.DS_Store
