@@ -2,34 +2,39 @@
   "name": "use-axios-client",
   "version": "2.0.0",
   "description": "Make axios requests in React using hooks.",
-  "scripts": {
-    "build": "pika build",
-    "coverage": "yarn test --coverage --watchAll=false && yarn report",
-    "lint": "eslint src babel.config.js --ext js,jsx,ts,tsx",
-    "prettier": "prettier --write **/*.{js,jsx,ts,tsx}",
-    "report": "cd coverage/lcov-report && open index.html",
-    "test": "jest --watch",
-    "test:once": "jest",
-    "tsc": "tsc --noEmit",
-    "prepare": "yarn lint && yarn test:once && yarn tsc && yarn build && cd pkg"
+  "keywords": [
+    "axios",
+    "hooks",
+    "http",
+    "react",
+    "xhr"
+  ],
+  "homepage": "https://use-axios-client.io",
+  "bugs": {
+    "url": "https://github.com/angelle-sw/use-axios-client/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/angelle-sw/use-axios-client.git"
   },
-  "author": "JP Angelle, Zak Angelle",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/angelle-sw/use-axios-client/issues"
+  "author": "JP Angelle, Zak Angelle",
+  "scripts": {
+    "build": "pika build",
+    "coverage": "yarn test --coverage --watchAll=false && yarn report",
+    "lint": "eslint src babel.config.js --ext js,jsx,ts,tsx",
+    "prepare": "yarn lint && yarn test:once && yarn tsc && yarn build && cd pkg",
+    "prettier": "prettier --write **/*.{js,jsx,ts,tsx}",
+    "report": "cd coverage/lcov-report && open index.html",
+    "test": "jest --watch",
+    "test:once": "jest",
+    "tsc": "tsc --noEmit"
   },
-  "homepage": "https://use-axios-client.io",
-  "keywords": [
-    "react",
-    "axios",
-    "hooks",
-    "xhr",
-    "http"
-  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
@@ -89,10 +94,5 @@
         "@pika/plugin-build-types"
       ]
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
   }
 }
