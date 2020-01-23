@@ -2,7 +2,7 @@ import React from 'react';
 import Container from '../Container';
 import Heading from '../Heading';
 import TextBlock from '../TextBlock';
-import { useAxios } from '../../../bin';
+import { useAxios } from '../../../pkg';
 
 interface Data {
   data: {

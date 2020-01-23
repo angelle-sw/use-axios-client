@@ -8,8 +8,6 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "declaration": true,
-    "declarationDir": "bin",
     "sourceMap": true,
     "baseUrl": "src",
     "typeRoots": ["src/@types", "node_modules/@types"]
